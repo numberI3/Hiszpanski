@@ -7,96 +7,79 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Español 0.3</title>
+<title>Español 0.4</title>
 
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 *{box-sizing:border-box}
 body{margin:0;background:#f6f7fb;color:#111827}
-.wrap{max-width:700px;margin:auto;padding:18px;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
-.top{display:flex;justify-content:space-between;align-items:center}
+button,input{font:inherit}
+.wrap{max-width:700px;margin:auto;padding:16px;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
 .version{font-size:12px;color:#9ca3af}
+h1{font-size:28px;margin:8px 0 0}
+h2{font-size:15px;color:#6b7280;margin:4px 0}
 
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:15px 0}
-.stat{background:white;border-radius:14px;padding:9px 4px;text-align:center;box-shadow:0 2px 10px #0001}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:15px 0}
+.stat{background:white;border-radius:14px;padding:9px 3px;text-align:center;box-shadow:0 2px 10px #0001}
 .stat b{display:block;font-size:18px}
 .stat span{font-size:10px;color:#6b7280}
 
 .progress{height:10px;background:#e5e7eb;border-radius:9px;overflow:hidden;margin:12px 0}
-.bar{height:100%;background:#22c55e;width:0}
+.bar{height:100%;background:#22c55e;width:0;transition:width .2s}
 
-.mode{
-text-align:center;
-font-size:12px;
-font-weight:750;
-color:#3b82f6;
-margin:8px 0 2px
+.mode{text-align:center;font-size:12px;font-weight:800;color:#3b82f6;margin:9px 0 3px}
+.status{text-align:center;min-height:32px;font-weight:750;margin:10px 0 12px}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.col{display:flex;flex-direction:column;gap:9px}
+.esrow{display:grid;grid-template-columns:minmax(0,1fr) 38px;gap:5px}
+
+.word,.audio,.choice{
+border:2px solid #d1d5db;background:white;border-radius:14px;
+font-weight:650;min-height:56px;box-shadow:0 2px 8px #0000000b
 }
-
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.col{display:flex;flex-direction:column;gap:10px}
-
-.esrow{display:grid;grid-template-columns:1fr 42px;gap:6px}
-
-.word,.audio{
-border:2px solid #d1d5db;
-background:white;
-border-radius:14px;
-font-size:18px;
-font-weight:650;
-min-height:58px;
-box-shadow:0 2px 8px #0000000b
-}
-
-.word{padding:13px 8px}
-.audio{font-size:19px;padding:0}
-
+.word,.choice{font-size:16px;padding:11px 6px;overflow-wrap:anywhere}
+.audio{font-size:17px;padding:0}
 .word.selected{border-color:#3b82f6;background:#eff6ff}
-.word.good{border-color:#16a34a;background:#dcfce7}
-.word.bad{border-color:#dc2626;background:#fee2e2}
-
+.word.good,.choice.good{border-color:#16a34a;background:#dcfce7}
+.word.bad,.choice.bad{border-color:#dc2626;background:#fee2e2}
 .done{visibility:hidden}
 
-.status{text-align:center;min-height:30px;font-weight:700;margin:12px}
-
-.bottom{
-background:white;
-border-radius:18px;
-padding:14px;
-margin-top:16px;
-box-shadow:0 2px 10px #0001
+.card{background:white;border-radius:20px;padding:18px 14px;margin-top:4px;box-shadow:0 2px 12px #0001}
+.prompt{text-align:center;font-size:25px;font-weight:800;margin:6px 0 14px}
+.listen{
+display:block;margin:4px auto 16px;border:0;border-radius:50%;
+width:76px;height:76px;font-size:31px;background:#111827;color:white
 }
+.choices{display:grid;grid-template-columns:1fr;gap:9px}
+.choice{width:100%}
 
-.btn{
-width:100%;
-border:0;
-border-radius:14px;
-padding:15px;
-font-weight:800;
-font-size:17px;
-background:#111827;
-color:white
+.typebox{display:none}
+.typebox.active{display:block}
+.answer{
+width:100%;border:2px solid #d1d5db;border-radius:14px;
+padding:14px;font-size:18px;text-align:center;outline:none
 }
-
-.small{
-text-align:center;
-color:#6b7280;
-font-size:12px;
-line-height:1.35;
-margin-top:10px
+.answer:focus{border-color:#3b82f6}
+.check{
+width:100%;border:0;border-radius:14px;padding:14px;margin-top:10px;
+font-weight:800;font-size:17px;background:#2563eb;color:white
 }
+.reveal{text-align:center;min-height:27px;margin-top:10px;font-weight:750}
+.hint{text-align:center;color:#6b7280;font-size:12px;margin:8px 0}
 
-h1{font-size:28px;margin:8px 0 0}
-h2{font-size:15px;color:#6b7280;margin:4px 0}
+.bottom{background:white;border-radius:18px;padding:14px;margin-top:15px;box-shadow:0 2px 10px #0001}
+.btn{width:100%;border:0;border-radius:14px;padding:15px;font-weight:800;font-size:17px;background:#111827;color:white}
+.small{text-align:center;color:#6b7280;font-size:12px;line-height:1.4;margin-top:10px}
 
 @media(max-width:390px){
-.wrap{padding:12px}
+.wrap{padding:11px}
 .stats{gap:4px}
 .stat b{font-size:16px}
-.word{font-size:16px}
-.audio{font-size:17px}
-.grid{gap:8px}
-.esrow{grid-template-columns:1fr 38px}
+.grid{gap:6px}
+.word,.choice{font-size:15px;padding:9px 4px}
+.esrow{grid-template-columns:minmax(0,1fr) 35px;gap:4px}
+.audio{font-size:16px}
 }
 </style>
 </head>
@@ -104,12 +87,8 @@ h2{font-size:15px;color:#6b7280;margin:4px 0}
 <body>
 <div class="wrap">
 
-<div class="top">
-<div>
 <h1>🇪🇸 Español</h1>
-<h2>A1 • inteligentne powtórki <span class="version">v0.3</span></h2>
-</div>
-</div>
+<h2>A1 • inteligentne powtórki <span class="version">v0.4</span></h2>
 
 <div class="stats">
 <div class="stat"><b id="newN">0</b><span>NOWE</span></div>
@@ -119,20 +98,35 @@ h2{font-size:15px;color:#6b7280;margin:4px 0}
 </div>
 
 <div class="progress"><div id="bar" class="bar"></div></div>
-
 <div id="mode" class="mode"></div>
-<div id="status" class="status">Połącz słowo z tłumaczeniem</div>
+<div id="status" class="status"></div>
 
-<div class="grid">
+<div id="matchArea" class="grid" style="display:none">
 <div id="leftCol" class="col"></div>
 <div id="rightCol" class="col"></div>
 </div>
 
+<div id="singleArea" class="card" style="display:none">
+<div id="prompt" class="prompt"></div>
+<button id="listen" class="listen" type="button">🔊</button>
+
+<div id="choiceBox" class="choices"></div>
+
+<div id="typeBox" class="typebox">
+<input id="answer" class="answer"
+       autocomplete="off" autocapitalize="none"
+       spellcheck="false" enterkeyhint="done"
+       placeholder="Wpisz odpowiedź">
+<button id="check" class="check" type="button">Sprawdź</button>
+<div id="reveal" class="reveal"></div>
+</div>
+</div>
+
 <div class="bottom">
-<button class="btn" id="next">Następna runda</button>
+<button class="btn" id="next" type="button">Następna runda</button>
 <div class="small">
-Kierunek nauki zmienia się automatycznie. Najpierw wracają zaległe i trudne słowa.
-🔊 tylko odtwarza hiszpańską wymowę. Dźwięk korzysta z aktualnego wyjścia audio iPhone’a.
+Nowe słowa zaczynają od łatwiejszych ćwiczeń. Z czasem dochodzi słuchanie i pisanie.
+Błędy w konkretnym trybie powodują częstszy powrót właśnie tego rodzaju zadania.
 </div>
 </div>
 
@@ -339,347 +333,603 @@ perro|pies
 gato|kot`;
 
 const WORDS=RAW.split('\n').map((x,i)=>{
-let [es,pl]=x.split('|');
-return {id:i,es,pl};
+  const [es,pl]=x.split('|');
+  return {id:i,es,pl};
 });
 
-const UNLOCK_BATCH=10;
 const ROUND=5;
 const DAY=86400000;
+const UNLOCK_BATCH=10;
 
 let stats=JSON.parse(localStorage.getItem('esStatsV2')||'{}');
 let meta=JSON.parse(localStorage.getItem('esMetaV2')||'{"unlocked":10}');
+let skills=JSON.parse(localStorage.getItem('esSkillsV4')||'{}');
 
 meta.unlocked=Math.max(10,Math.min(WORDS.length,meta.unlocked||10));
-
-let left=null;
-let right=null;
-let done=0;
-let round=[];
-let direction='es-pl';
 
 const newN=document.getElementById('newN');
 const dueN=document.getElementById('dueN');
 const learnN=document.getElementById('learnN');
 const masterN=document.getElementById('masterN');
 const bar=document.getElementById('bar');
-const statusEl=document.getElementById('status');
 const modeEl=document.getElementById('mode');
+const statusEl=document.getElementById('status');
+const matchArea=document.getElementById('matchArea');
+const singleArea=document.getElementById('singleArea');
 const leftCol=document.getElementById('leftCol');
 const rightCol=document.getElementById('rightCol');
-const next=document.getElementById('next');
+const promptEl=document.getElementById('prompt');
+const listenBtn=document.getElementById('listen');
+const choiceBox=document.getElementById('choiceBox');
+const typeBox=document.getElementById('typeBox');
+const answerEl=document.getElementById('answer');
+const checkBtn=document.getElementById('check');
+const revealEl=document.getElementById('reveal');
+const nextBtn=document.getElementById('next');
+
+let round=[];
+let roundMode='';
+let left=null;
+let right=null;
+let done=0;
+let currentIndex=0;
+let locked=false;
 
 const now=()=>Date.now();
 
 function shuffle(a){
-let b=[...a];
-for(let i=b.length-1;i>0;i--){
-let j=Math.floor(Math.random()*(i+1));
-[b[i],b[j]]=[b[j],b[i]];
-}
-return b;
+  const b=[...a];
+  for(let i=b.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [b[i],b[j]]=[b[j],b[i]];
+  }
+  return b;
 }
 
 function S(w){
-return stats[w.id]||{
-stage:0,
-right:0,
-wrong:0,
-streak:0,
-due:0,
-last:0
-};
+  return stats[w.id]||{
+    stage:0,right:0,wrong:0,streak:0,due:0,last:0
+  };
+}
+
+function defaultSkill(){
+  return {
+    "es-pl":{r:0,w:0},
+    "pl-es":{r:0,w:0},
+    "audio-pl":{r:0,w:0},
+    "type-pl":{r:0,w:0},
+    "type-es":{r:0,w:0}
+  };
+}
+
+function K(w){
+  if(!skills[w.id]) skills[w.id]=defaultSkill();
+  return skills[w.id];
 }
 
 function save(){
-localStorage.setItem('esStatsV2',JSON.stringify(stats));
-localStorage.setItem('esMetaV2',JSON.stringify(meta));
+  localStorage.setItem('esStatsV2',JSON.stringify(stats));
+  localStorage.setItem('esMetaV2',JSON.stringify(meta));
+  localStorage.setItem('esSkillsV4',JSON.stringify(skills));
 }
 
-function speak(t){
-if(!('speechSynthesis' in window))return;
-speechSynthesis.cancel();
-let u=new SpeechSynthesisUtterance(t);
-u.lang='es-ES';
-u.rate=.82;
-speechSynthesis.speak(u);
+function speak(text,lang='es-ES'){
+  if(!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang=lang;
+  u.rate=.82;
+  speechSynthesis.speak(u);
+}
+
+function normalizeBase(t){
+  return t.trim().toLocaleLowerCase()
+    .replace(/[.,!?¿¡"'’]/g,'')
+    .replace(/\s+/g,' ');
+}
+
+function stripMarks(t){
+  return normalizeBase(t)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g,'');
+}
+
+function compareAnswer(input,target,language){
+  const a=normalizeBase(input);
+  const b=normalizeBase(target);
+
+  if(a===b)return {ok:true,accent:false};
+
+  if(stripMarks(a)===stripMarks(b)){
+    return {ok:true,accent:language==='es'};
+  }
+
+  return {ok:false,accent:false};
 }
 
 function priority(w){
-let s=S(w);
+  const s=S(w);
 
-if(s.due && s.due<=now())
-return 100+s.wrong*8-s.streak*2;
+  if(s.due && s.due<=now())
+    return 120+s.wrong*9-s.streak*2;
 
-if(s.stage===0)
-return 60;
+  if(!stats[w.id] || s.stage===0)
+    return 80;
 
-if(s.stage<4)
-return 40+s.wrong*6-s.streak;
+  if(s.stage<4)
+    return 45+s.wrong*6-s.streak;
 
-return 5+Math.random()*10;
+  return 5+Math.random()*8;
 }
 
-function pick(){
-let pool=WORDS.slice(0,meta.unlocked);
-
-return pool
-.map(w=>[w,priority(w)+Math.random()*20])
-.sort((a,b)=>b[1]-a[1])
-.slice(0,ROUND)
-.map(x=>x[0]);
+function pickWords(){
+  return WORDS.slice(0,meta.unlocked)
+    .map(w=>[w,priority(w)+Math.random()*12])
+    .sort((a,b)=>b[1]-a[1])
+    .slice(0,ROUND)
+    .map(x=>x[0]);
 }
 
 function dueDelay(s){
-if(s.stage<=1)return 10*60*1000;
-if(s.stage===2)return DAY;
-if(s.stage===3)return 4*DAY;
-if(s.stage===4)return 14*DAY;
-return 30*DAY;
+  if(s.stage<=1)return 10*60*1000;
+  if(s.stage===2)return DAY;
+  if(s.stage===3)return 4*DAY;
+  if(s.stage===4)return 14*DAY;
+  return 30*DAY;
 }
 
 function updateStats(){
-let unlocked=WORDS.slice(0,meta.unlocked);
+  let n=0,d=0,l=0,m=0;
 
-let n=0,d=0,l=0,m=0;
+  WORDS.slice(0,meta.unlocked).forEach(w=>{
+    const s=S(w);
 
-unlocked.forEach(w=>{
-let s=S(w);
+    if(!stats[w.id] || s.stage===0)n++;
+    if(stats[w.id] && s.due && s.due<=now())d++;
+    if(stats[w.id] && s.stage>0 && s.stage<4)l++;
+    if(stats[w.id] && s.stage>=4)m++;
+  });
 
-if(!stats[w.id]) n++;
-else if(s.due && s.due<=now()) d++;
+  newN.textContent=n;
+  dueN.textContent=d;
+  learnN.textContent=l;
+  masterN.textContent=m;
+}
 
-if(stats[w.id] && s.stage>0 && s.stage<4) l++;
-if(stats[w.id] && s.stage>=4) m++;
-});
+function modeWeakness(w,mode){
+  const k=K(w)[mode];
+  return (k.w*3)-k.r;
+}
 
-newN.textContent=n;
-dueN.textContent=d;
-learnN.textContent=l;
-masterN.textContent=m;
+function chooseMode(words){
+  const minStage=Math.min(...words.map(w=>S(w).stage));
+
+  /* Zupełnie nowe słowa: tylko rozpoznawanie. */
+  if(minStage===0){
+    return Math.random()<.65?'es-pl':'pl-es';
+  }
+
+  let allowed=['es-pl','pl-es'];
+
+  if(minStage>=1)allowed.push('audio-pl');
+  if(minStage>=2)allowed.push('type-pl');
+  if(minStage>=3)allowed.push('type-es');
+
+  /* Im więcej błędów w danym trybie, tym większa szansa jego powrotu. */
+  const scored=allowed.map(mode=>{
+    let score=Math.random()*4;
+    words.forEach(w=>score+=Math.max(0,modeWeakness(w,mode)));
+    return [mode,score];
+  });
+
+  scored.sort((a,b)=>b[1]-a[1]);
+
+  /* 65% wybór słabszej umiejętności, 35% urozmaicenie. */
+  return Math.random()<.65
+    ? scored[0][0]
+    : allowed[Math.floor(Math.random()*allowed.length)];
+}
+
+function record(w,mode,ok,accent=false){
+  const s=S(w);
+  const k=K(w)[mode];
+
+  if(ok){
+    k.r++;
+
+    /*
+      Brak akcentu w hiszpańskim uznajemy za poprawne znaczenie,
+      ale nie dajemy pełnego awansu.
+    */
+    if(accent){
+      s.streak=0;
+      s.due=now()+10*60*1000;
+    }else{
+      s.right++;
+      s.streak++;
+      s.stage=Math.min(5,s.stage+1);
+      s.due=now()+dueDelay(s);
+    }
+  }else{
+    k.w++;
+    s.wrong++;
+    s.streak=0;
+    if(s.stage>1)s.stage--;
+    s.due=now()+2*60*1000;
+  }
+
+  s.last=now();
+  stats[w.id]=s;
+  save();
+  updateStats();
 }
 
 function makeWord(w,text,side){
-let e=document.createElement('button');
-e.className='word';
-e.dataset.id=w.id;
-e.dataset.side=side;
-e.textContent=text;
-e.onclick=()=>select(e);
-return e;
+  const e=document.createElement('button');
+  e.className='word';
+  e.dataset.id=w.id;
+  e.dataset.side=side;
+  e.textContent=text;
+  e.onclick=()=>selectMatch(e);
+  return e;
 }
 
 function makeAudio(w){
-let a=document.createElement('button');
-a.className='audio';
-a.textContent='🔊';
-a.setAttribute('aria-label','Odtwórz '+w.es);
-
-a.onclick=ev=>{
-ev.stopPropagation();
-speak(w.es);
-};
-
-return a;
-}
-
-function render(){
-round=pick();
-done=0;
-left=null;
-right=null;
-
-bar.style.width='0%';
-statusEl.textContent='Połącz słowo z tłumaczeniem';
-
-direction=Math.random()<0.5?'es-pl':'pl-es';
-
-leftCol.innerHTML='';
-rightCol.innerHTML='';
-
-if(direction==='es-pl'){
-modeEl.textContent='🇪🇸 HISZPAŃSKI → 🇵🇱 POLSKI';
-
-round.forEach(w=>{
-let row=document.createElement('div');
-row.className='esrow';
-
-row.append(
-makeWord(w,w.es,'left'),
-makeAudio(w)
-);
-
-leftCol.append(row);
-});
-
-shuffle(round).forEach(w=>{
-rightCol.append(makeWord(w,w.pl,'right'));
-});
-
-}else{
-modeEl.textContent='🇵🇱 POLSKI → 🇪🇸 HISZPAŃSKI';
-
-round.forEach(w=>{
-leftCol.append(makeWord(w,w.pl,'left'));
-});
-
-shuffle(round).forEach(w=>{
-let row=document.createElement('div');
-row.className='esrow';
-
-row.append(
-makeWord(w,w.es,'right'),
-makeAudio(w)
-);
-
-rightCol.append(row);
-});
-}
-
-updateStats();
-}
-
-function select(el){
-if(el.classList.contains('done'))return;
-
-if(el.dataset.side==='left'){
-document.querySelectorAll('#leftCol .selected')
-.forEach(x=>x.classList.remove('selected'));
-
-left=el;
-
-}else{
-document.querySelectorAll('#rightCol .selected')
-.forEach(x=>x.classList.remove('selected'));
-
-right=el;
-}
-
-el.classList.add('selected');
-
-if(left && right)check();
+  const a=document.createElement('button');
+  a.className='audio';
+  a.textContent='🔊';
+  a.type='button';
+  a.onclick=ev=>{
+    ev.stopPropagation();
+    speak(w.es,'es-ES');
+  };
+  return a;
 }
 
 function hideAudioFor(el){
-let row=el.closest('.esrow');
-if(row){
-let a=row.querySelector('.audio');
-if(a)a.classList.add('done');
-}
-}
-
-function check(){
-let ok=left.dataset.id===right.dataset.id;
-let key=+left.dataset.id;
-let w=WORDS[key];
-let s=S(w);
-
-if(ok){
-
-s.right++;
-s.streak++;
-s.stage=Math.min(5,s.stage+1);
-s.last=now();
-s.due=now()+dueDelay(s);
-
-stats[key]=s;
-
-left.classList.remove('selected');
-right.classList.remove('selected');
-
-left.classList.add('good');
-right.classList.add('good');
-
-statusEl.textContent='✓ Dobrze';
-
-let a=left;
-let b=right;
-
-setTimeout(()=>{
-a.classList.add('done');
-b.classList.add('done');
-
-hideAudioFor(a);
-hideAudioFor(b);
-
-a.classList.remove('good');
-b.classList.remove('good');
-
-left=null;
-right=null;
-
-done++;
-bar.style.width=(done/ROUND*100)+'%';
-
-if(done===ROUND){
-statusEl.textContent='🎉 Runda ukończona';
-maybeUnlock();
-}
-},420);
-
-}else{
-
-s.wrong++;
-s.streak=0;
-s.stage=Math.max(0,s.stage-1);
-s.last=now();
-s.due=now()+2*60*1000;
-
-stats[key]=s;
-
-left.classList.add('bad');
-right.classList.add('bad');
-
-statusEl.textContent='✕ To słowo wróci szybciej';
-
-let a=left;
-let b=right;
-
-setTimeout(()=>{
-a.classList.remove('bad','selected');
-b.classList.remove('bad','selected');
-
-left=null;
-right=null;
-},550);
+  const row=el.closest('.esrow');
+  if(!row)return;
+  const a=row.querySelector('.audio');
+  if(a)a.classList.add('done');
 }
 
-save();
-updateStats();
+function renderMatch(){
+  matchArea.style.display='grid';
+  singleArea.style.display='none';
+  leftCol.innerHTML='';
+  rightCol.innerHTML='';
+  statusEl.textContent='Połącz słowo z tłumaczeniem';
+
+  if(roundMode==='es-pl'){
+    modeEl.textContent='🇪🇸 HISZPAŃSKI → 🇵🇱 POLSKI';
+
+    round.forEach(w=>{
+      const row=document.createElement('div');
+      row.className='esrow';
+      row.append(makeWord(w,w.es,'left'),makeAudio(w));
+      leftCol.append(row);
+    });
+
+    shuffle(round).forEach(w=>{
+      rightCol.append(makeWord(w,w.pl,'right'));
+    });
+  }else{
+    modeEl.textContent='🇵🇱 POLSKI → 🇪🇸 HISZPAŃSKI';
+
+    round.forEach(w=>{
+      leftCol.append(makeWord(w,w.pl,'left'));
+    });
+
+    shuffle(round).forEach(w=>{
+      const row=document.createElement('div');
+      row.className='esrow';
+      row.append(makeWord(w,w.es,'right'),makeAudio(w));
+      rightCol.append(row);
+    });
+  }
+}
+
+function selectMatch(el){
+  if(el.classList.contains('done')||locked)return;
+
+  if(el.dataset.side==='left'){
+    document.querySelectorAll('#leftCol .selected')
+      .forEach(x=>x.classList.remove('selected'));
+    left=el;
+  }else{
+    document.querySelectorAll('#rightCol .selected')
+      .forEach(x=>x.classList.remove('selected'));
+    right=el;
+  }
+
+  el.classList.add('selected');
+
+  if(left&&right)checkMatch();
+}
+
+function checkMatch(){
+  const ok=left.dataset.id===right.dataset.id;
+  const w=WORDS[+left.dataset.id];
+
+  if(ok){
+    record(w,roundMode,true);
+
+    left.classList.remove('selected');
+    right.classList.remove('selected');
+    left.classList.add('good');
+    right.classList.add('good');
+
+    statusEl.textContent='✓ Dobrze';
+
+    const a=left,b=right;
+    locked=true;
+
+    setTimeout(()=>{
+      a.classList.add('done');
+      b.classList.add('done');
+      hideAudioFor(a);
+      hideAudioFor(b);
+
+      a.classList.remove('good');
+      b.classList.remove('good');
+
+      left=right=null;
+      locked=false;
+      done++;
+
+      updateProgress();
+
+      if(done===ROUND)finishRound();
+    },420);
+
+  }else{
+    record(w,roundMode,false);
+
+    left.classList.add('bad');
+    right.classList.add('bad');
+    statusEl.textContent='✕ To słowo wróci szybciej';
+
+    const a=left,b=right;
+    locked=true;
+
+    setTimeout(()=>{
+      a.classList.remove('bad','selected');
+      b.classList.remove('bad','selected');
+      left=right=null;
+      locked=false;
+    },600);
+  }
+}
+
+function distractorsFor(w,count=3){
+  return shuffle(
+    WORDS.slice(0,meta.unlocked).filter(x=>x.id!==w.id)
+  ).slice(0,count);
+}
+
+function renderSingle(){
+  matchArea.style.display='none';
+  singleArea.style.display='block';
+  currentIndex=0;
+  showSingleQuestion();
+}
+
+function showSingleQuestion(){
+  locked=false;
+  choiceBox.innerHTML='';
+  typeBox.classList.remove('active');
+  revealEl.textContent='';
+  answerEl.value='';
+
+  const w=round[currentIndex];
+
+  if(roundMode==='audio-pl'){
+    modeEl.textContent='🔊 HISZPAŃSKI → WYBIERZ POLSKI';
+    statusEl.textContent='Posłuchaj i wybierz znaczenie';
+    promptEl.textContent='Co słyszysz?';
+    listenBtn.style.display='block';
+
+    listenBtn.onclick=()=>speak(w.es,'es-ES');
+
+    const options=shuffle([w,...distractorsFor(w)]);
+
+    options.forEach(x=>{
+      const b=document.createElement('button');
+      b.className='choice';
+      b.textContent=x.pl;
+      b.onclick=()=>checkChoice(b,x.id===w.id,w);
+      choiceBox.append(b);
+    });
+
+    setTimeout(()=>speak(w.es,'es-ES'),180);
+
+  }else if(roundMode==='type-pl'){
+    modeEl.textContent='🔊 HISZPAŃSKI → ✍️ NAPISZ PO POLSKU';
+    statusEl.textContent='Posłuchaj i wpisz tłumaczenie';
+    promptEl.textContent='Co to znaczy?';
+    listenBtn.style.display='block';
+    listenBtn.onclick=()=>speak(w.es,'es-ES');
+    typeBox.classList.add('active');
+    answerEl.placeholder='Wpisz po polsku';
+    checkBtn.onclick=()=>checkTyped(w,'pl');
+    setTimeout(()=>speak(w.es,'es-ES'),180);
+
+  }else{
+    modeEl.textContent='🔊 POLSKI → ✍️ NAPISZ PO HISZPAŃSKU';
+    statusEl.textContent='Posłuchaj i wpisz hiszpańskie słowo';
+    promptEl.textContent='Jak to będzie po hiszpańsku?';
+    listenBtn.style.display='block';
+    listenBtn.onclick=()=>speak(w.pl,'pl-PL');
+    typeBox.classList.add('active');
+    answerEl.placeholder='Wpisz po hiszpańsku';
+    checkBtn.onclick=()=>checkTyped(w,'es');
+    setTimeout(()=>speak(w.pl,'pl-PL'),180);
+  }
+}
+
+function checkChoice(button,ok,w){
+  if(locked)return;
+  locked=true;
+
+  if(ok){
+    record(w,'audio-pl',true);
+    button.classList.add('good');
+    statusEl.textContent='✓ Dobrze';
+
+    setTimeout(()=>{
+      currentIndex++;
+      done++;
+      updateProgress();
+
+      if(currentIndex>=round.length)finishRound();
+      else showSingleQuestion();
+    },650);
+
+  }else{
+    record(w,'audio-pl',false);
+    button.classList.add('bad');
+    statusEl.textContent='✕ Spróbuj jeszcze raz';
+
+    setTimeout(()=>{
+      button.classList.remove('bad');
+      locked=false;
+    },650);
+  }
+}
+
+function checkTyped(w,lang){
+  if(locked)return;
+
+  const input=answerEl.value;
+  if(!input.trim())return;
+
+  const target=lang==='es'?w.es:w.pl;
+  const result=compareAnswer(input,target,lang);
+  const mode=lang==='es'?'type-es':'type-pl';
+
+  locked=true;
+
+  if(result.ok){
+    record(w,mode,true,result.accent);
+
+    if(result.accent){
+      statusEl.textContent='✓ Znaczenie dobre — zapamiętaj akcent';
+      revealEl.textContent='Poprawnie: '+target;
+      if(lang==='es')speak(w.es,'es-ES');
+    }else{
+      statusEl.textContent='✓ Dobrze';
+      revealEl.textContent='Poprawnie: '+target;
+      if(lang==='es')speak(w.es,'es-ES');
+    }
+
+    setTimeout(()=>{
+      currentIndex++;
+      done++;
+      updateProgress();
+
+      if(currentIndex>=round.length)finishRound();
+      else showSingleQuestion();
+    },1000);
+
+  }else{
+    record(w,mode,false);
+    statusEl.textContent='✕ Nie tym razem';
+    revealEl.textContent='Poprawnie: '+target;
+
+    if(lang==='es')speak(w.es,'es-ES');
+
+    /*
+      Po błędzie pokazujemy odpowiedź.
+      Użytkownik przechodzi dalej, a słowo dostaje szybką powtórkę.
+    */
+    setTimeout(()=>{
+      currentIndex++;
+      done++;
+      updateProgress();
+
+      if(currentIndex>=round.length)finishRound();
+      else showSingleQuestion();
+    },1600);
+  }
+}
+
+function updateProgress(){
+  bar.style.width=(done/ROUND*100)+'%';
 }
 
 function maybeUnlock(){
-let unlocked=WORDS.slice(0,meta.unlocked);
+  const unlocked=WORDS.slice(0,meta.unlocked);
+  const introduced=unlocked.filter(w=>stats[w.id]).length;
+  const learning=unlocked.filter(
+    w=>stats[w.id]&&S(w).stage<3
+  ).length;
 
-let introduced=unlocked.filter(w=>stats[w.id]).length;
+  if(
+    introduced>=Math.min(meta.unlocked,10) &&
+    learning<=6 &&
+    meta.unlocked<WORDS.length
+  ){
+    meta.unlocked=Math.min(
+      WORDS.length,
+      meta.unlocked+UNLOCK_BATCH
+    );
+    save();
+    updateStats();
+    return true;
+  }
 
-let learning=unlocked.filter(
-w=>stats[w.id] && S(w).stage<3
-).length;
-
-if(
-introduced>=Math.min(meta.unlocked,10) &&
-learning<=6 &&
-meta.unlocked<WORDS.length
-){
-meta.unlocked=Math.min(
-WORDS.length,
-meta.unlocked+UNLOCK_BATCH
-);
-
-save();
-updateStats();
+  return false;
 }
+
+function finishRound(){
+  locked=false;
+  const unlocked=maybeUnlock();
+
+  statusEl.textContent=unlocked
+    ? '🎉 Runda ukończona • 🔓 nowe słowa odblokowane'
+    : '🎉 Runda ukończona';
+
+  if(roundMode!=='es-pl'&&roundMode!=='pl-es'){
+    promptEl.textContent='Gotowe!';
+    listenBtn.style.display='none';
+    choiceBox.innerHTML='';
+    typeBox.classList.remove('active');
+  }
 }
 
-next.onclick=render;
+function render(){
+  round=pickWords();
+  roundMode=chooseMode(round);
+
+  left=right=null;
+  done=0;
+  currentIndex=0;
+  locked=false;
+  bar.style.width='0%';
+
+  if(roundMode==='es-pl'||roundMode==='pl-es'){
+    renderMatch();
+  }else{
+    renderSingle();
+  }
+
+  updateStats();
+}
+
+answerEl.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+    e.preventDefault();
+    checkBtn.click();
+  }
+});
+
+nextBtn.onclick=render;
 
 render();
 
 if('serviceWorker' in navigator){
-navigator.serviceWorker.register('sw.js');
+  navigator.serviceWorker.register('sw.js');
 }
 </script>
-
 </body>
 </html>
