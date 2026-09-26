@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Español 0.4</title>
+<title>Español 0.4.1</title>
 
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
@@ -88,7 +88,7 @@ font-weight:800;font-size:17px;background:#2563eb;color:white
 <div class="wrap">
 
 <h1>🇪🇸 Español</h1>
-<h2>A1 • inteligentne powtórki <span class="version">v0.4</span></h2>
+<h2>A1 • inteligentne powtórki <span class="version">v0.4.1</span>/span></h2>
 
 <div class="stats">
 <div class="stat"><b id="newN">0</b><span>NOWE</span></div>
@@ -570,7 +570,14 @@ function makeWord(w,text,side){
   e.dataset.id=w.id;
   e.dataset.side=side;
   e.textContent=text;
-  e.onclick=()=>selectMatch(e);
+
+  e.onclick=()=>{
+    if(text===w.es){
+      speak(w.es,'es-ES');
+    }
+    selectMatch(e);
+  };
+
   return e;
 }
 
