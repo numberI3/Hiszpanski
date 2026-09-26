@@ -88,7 +88,7 @@ font-weight:800;font-size:17px;background:#2563eb;color:white
 <div class="wrap">
 
 <h1>🇪🇸 Español</h1>
-<h2>A1 • inteligentne powtórki <span class="version">v0.4.1</span>/span></h2>
+<h2>A1 • inteligentne powtórki <span class="version">v0.4.1</span></h2>
 
 <div class="stats">
 <div class="stat"><b id="newN">0</b><span>NOWE</span></div>
@@ -118,6 +118,12 @@ font-weight:800;font-size:17px;background:#2563eb;color:white
        spellcheck="false" enterkeyhint="done"
        placeholder="Wpisz odpowiedź">
 <button id="check" class="check" type="button">Sprawdź</button>
+<button id="giveUp" class="check secondary" type="button" style="display:none">
+Nie wiem — pokaż odpowiedź
+</button>
+<button id="continueBtn" class="check" type="button" style="display:none">
+Dalej
+</button>
 <div id="reveal" class="reveal"></div>
 </div>
 </div>
@@ -364,7 +370,11 @@ const choiceBox=document.getElementById('choiceBox');
 const typeBox=document.getElementById('typeBox');
 const answerEl=document.getElementById('answer');
 const checkBtn=document.getElementById('check');
+const giveUpBtn=document.getElementById('giveUp');
+const continueBtn=document.getElementById('continueBtn');
 const revealEl=document.getElementById('reveal');
+
+let typedMistakeRecorded=false;
 const nextBtn=document.getElementById('next');
 
 let round=[];
@@ -637,7 +647,7 @@ function renderMatch(){
 }
 
 function selectMatch(el){
-  if(el.classList.contains('done')||locked)return;
+  if(el.dataset.solved==='1'||locked)return;
 
   if(el.dataset.side==='left'){
     document.querySelectorAll('#leftCol .selected')
@@ -672,22 +682,28 @@ function checkMatch(){
     locked=true;
 
     setTimeout(()=>{
-      a.classList.add('done');
-      b.classList.add('done');
-      hideAudioFor(a);
-      hideAudioFor(b);
+  /*
+    Poprawna para zostaje na ekranie.
+    Kafelki są zielone i nie można użyć ich ponownie,
+    ale przycisk 🔊 pozostaje aktywny.
+  */
+  a.classList.remove('selected');
+  b.classList.remove('selected');
 
-      a.classList.remove('good');
-      b.classList.remove('good');
+  a.dataset.solved='1';
+  b.dataset.solved='1';
 
-      left=right=null;
-      locked=false;
-      done++;
+  a.disabled=true;
+  b.disabled=true;
 
-      updateProgress();
+  left=right=null;
+  locked=false;
+  done++;
 
-      if(done===ROUND)finishRound();
-    },420);
+  updateProgress();
+
+  if(done===ROUND)finishRound();
+},420);
 
   }else{
     record(w,roundMode,false);
