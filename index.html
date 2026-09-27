@@ -423,12 +423,59 @@ function save(){
   localStorage.setItem('esSkillsV4',JSON.stringify(skills));
 }
 
+function getBestVoice(lang){
+  const voices=speechSynthesis.getVoices();
+
+  const exact=voices.filter(v=>
+    v.lang.toLowerCase()===lang.toLowerCase()
+  );
+
+  const sameLanguage=voices.filter(v=>
+    v.lang.toLowerCase().startsWith(lang.slice(0,2).toLowerCase())
+  );
+
+  const candidates=exact.length ? exact : sameLanguage;
+
+  if(!candidates.length)return null;
+
+  const preferredNames=[
+    'Mónica',
+    'Monica',
+    'Paulina',
+    'Jorge',
+    'Marisol',
+    'Siri'
+  ];
+
+  for(const name of preferredNames){
+    const found=candidates.find(v=>
+      v.name.toLowerCase().includes(name.toLowerCase())
+    );
+    if(found)return found;
+  }
+
+  return candidates[0];
+}
+
 function speak(text,lang='es-ES'){
   if(!('speechSynthesis' in window))return;
+
   speechSynthesis.cancel();
+
   const u=new SpeechSynthesisUtterance(text);
   u.lang=lang;
-  u.rate=.82;
+
+  const voice=getBestVoice(lang);
+  if(voice)u.voice=voice;
+
+  if(lang.startsWith('es')){
+    u.rate=.92;
+    u.pitch=1;
+  }else{
+    u.rate=.95;
+    u.pitch=1;
+  }
+
   speechSynthesis.speak(u);
 }
 
