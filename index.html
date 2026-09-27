@@ -739,6 +739,12 @@ function renderSingle(){
 
 function showSingleQuestion(){
   locked=false;
+  typedMistakeRecorded=false;
+
+  giveUpBtn.style.display='none';
+  continueBtn.style.display='none';
+  checkBtn.style.display='block';
+
   choiceBox.innerHTML='';
   typeBox.classList.remove('active');
   revealEl.textContent='';
@@ -830,52 +836,85 @@ function checkTyped(w,lang){
   const result=compareAnswer(input,target,lang);
   const mode=lang==='es'?'type-es':'type-pl';
 
-  locked=true;
-
   if(result.ok){
+    locked=true;
+
     record(w,mode,true,result.accent);
 
+    giveUpBtn.style.display='none';
+
     if(result.accent){
-      statusEl.textContent='✓ Znaczenie dobre — zapamiętaj akcent';
-      revealEl.textContent='Poprawnie: '+target;
-      if(lang==='es')speak(w.es,'es-ES');
+      statusEl.textContent='✓ Dobrze — zapamiętaj akcent';
+      revealEl.textContent='Poprawna pisownia: '+target;
     }else{
       statusEl.textContent='✓ Dobrze';
       revealEl.textContent='Poprawnie: '+target;
-      if(lang==='es')speak(w.es,'es-ES');
+    }
+
+    if(lang==='es'){
+      speak(w.es,'es-ES');
     }
 
     setTimeout(()=>{
       currentIndex++;
       done++;
+      typedMistakeRecorded=false;
       updateProgress();
 
-      if(currentIndex>=round.length)finishRound();
-      else showSingleQuestion();
-    },1000);
+      if(currentIndex>=round.length){
+        finishRound();
+      }else{
+        showSingleQuestion();
+      }
+    },1100);
 
   }else{
-    record(w,mode,false);
-    statusEl.textContent='✕ Nie tym razem';
-    revealEl.textContent='Poprawnie: '+target;
 
-    if(lang==='es')speak(w.es,'es-ES');
+    if(!typedMistakeRecorded){
+      record(w,mode,false);
+      typedMistakeRecorded=true;
+    }
 
-    /*
-      Po błędzie pokazujemy odpowiedź.
-      Użytkownik przechodzi dalej, a słowo dostaje szybką powtórkę.
-    */
-    setTimeout(()=>{
-      currentIndex++;
-      done++;
-      updateProgress();
+    statusEl.textContent='✕ Źle — spróbuj jeszcze raz';
+    revealEl.textContent='';
 
-      if(currentIndex>=round.length)finishRound();
-      else showSingleQuestion();
-    },1600);
+    answerEl.value='';
+    answerEl.focus();
+
+    giveUpBtn.style.display='block';
+
+    giveUpBtn.onclick=()=>{
+      locked=true;
+
+      revealEl.textContent='Poprawnie: '+target;
+      statusEl.textContent='Zobacz odpowiedź i spróbuj ją zapamiętać';
+
+      giveUpBtn.style.display='none';
+      checkBtn.style.display='none';
+      continueBtn.style.display='block';
+
+      if(lang==='es'){
+        speak(w.es,'es-ES');
+      }
+
+      continueBtn.onclick=()=>{
+        currentIndex++;
+        done++;
+        typedMistakeRecorded=false;
+        updateProgress();
+
+        checkBtn.style.display='block';
+        continueBtn.style.display='none';
+
+        if(currentIndex>=round.length){
+          finishRound();
+        }else{
+          showSingleQuestion();
+        }
+      };
+    };
   }
 }
-
 function updateProgress(){
   bar.style.width=(done/ROUND*100)+'%';
 }
