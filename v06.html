@@ -472,9 +472,36 @@ alert(
 
 document.getElementById('startCourseBtn').onclick=()=>{
 
-alert(
-'Profil i kurs zostały zapisane. Silnik lekcji podłączymy w następnym etapie.'
-);
+  const profile=getActiveProfile();
+
+  if(!profile){
+    alert('Nie znaleziono aktywnego profilu.');
+    return;
+  }
+
+  if(!selectedCourse || !selectedLevel){
+    alert('Nie wybrano kursu lub poziomu.');
+    return;
+  }
+
+  const lesson=LinguaCoreEngine.buildLesson(
+    profile.id,
+    selectedCourse,
+    selectedLevel,
+    5
+  );
+
+  console.log('LinguaCore lesson:',lesson);
+
+  if(!lesson.length){
+    alert('Brak materiału dla wybranego kursu i poziomu.');
+    return;
+  }
+
+  alert(
+    'Lekcja gotowa!\n\n' +
+    lesson.map(word=>word.target+' — '+word.pl).join('\n')
+  );
 
 };
 
