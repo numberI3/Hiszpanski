@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Español 0.4.1</title>
+<title>Español 0.5</title>
 
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
@@ -97,7 +97,7 @@ font-weight:800;font-size:17px;background:#2563eb;color:white
 <div class="wrap">
 
 <h1>🇪🇸 Español</h1>
-<h2>A1 • inteligentne powtórki <span class="version">v0.4.1</span></h2>
+<h2>A1 • inteligentne powtórki <span class="version">v0.5</span></h2>
 
 <div class="stats">
 <div class="stat"><b id="newN">0</b><span>NOWE</span></div>
@@ -566,34 +566,94 @@ function modeWeakness(w,mode){
   const k=K(w)[mode];
   return (k.w*3)-k.r;
 }
+function weightedMode(words,modes){
+  const scored=modes.map(mode=>{
+    let score=Math.random()*3;
 
-function chooseMode(words){
-  const minStage=Math.min(...words.map(w=>S(w).stage));
+    words.forEach(w=>{
+      score+=Math.max(0,modeWeakness(w,mode))*2;
+    });
 
-  /* Zupełnie nowe słowa: tylko rozpoznawanie. */
-  if(minStage===0){
-    return Math.random()<.65?'es-pl':'pl-es';
-  }
-
-  let allowed=['es-pl','pl-es'];
-
-  if(minStage>=1)allowed.push('audio-pl');
-  if(minStage>=2)allowed.push('type-pl');
-  if(minStage>=3)allowed.push('type-es');
-
-  /* Im więcej błędów w danym trybie, tym większa szansa jego powrotu. */
-  const scored=allowed.map(mode=>{
-    let score=Math.random()*4;
-    words.forEach(w=>score+=Math.max(0,modeWeakness(w,mode)));
     return [mode,score];
   });
 
   scored.sort((a,b)=>b[1]-a[1]);
 
-  /* 65% wybór słabszej umiejętności, 35% urozmaicenie. */
-  return Math.random()<.65
-    ? scored[0][0]
-    : allowed[Math.floor(Math.random()*allowed.length)];
+  /*
+    75%: ćwiczymy najsłabszą umiejętność.
+    25%: losujemy dla urozmaicenia.
+  */
+  if(Math.random()<.75){
+    return scored[0][0];
+  }
+
+  return modes[Math.floor(Math.random()*modes.length)];
+}
+function chooseMode(words){
+  const stages=words.map(w=>S(w).stage);
+  const minStage=Math.min(...stages);
+  const avgStage=stages.reduce((a,b)=>a+b,0)/stages.length;
+
+  /*
+    Nowe słowa:
+    najpierw poznajemy znaczenie przez kafelki.
+  */
+  if(minStage===0){
+    return Math.random()<.5 ? 'es-pl' : 'pl-es';
+  }
+
+  /*
+    Słowa na bardzo wczesnym etapie:
+    nadal dużo rozpoznawania, ale zaczynamy słuchanie.
+  */
+  if(avgStage<2){
+    const modes=[
+      'es-pl',
+      'pl-es',
+      'audio-pl'
+    ];
+
+    return weightedMode(words,modes);
+  }
+
+  /*
+    Średnio opanowane:
+    ograniczamy kafelki i zwiększamy aktywne przypominanie.
+  */
+  if(avgStage<3.5){
+    const roll=Math.random();
+
+    if(roll<.15){
+      return Math.random()<.5 ? 'es-pl' : 'pl-es';
+    }
+
+    const modes=[
+      'audio-pl',
+      'type-pl',
+      'type-es'
+    ];
+
+    return weightedMode(words,modes);
+  }
+
+  /*
+    Dobrze znane słowa:
+    kafelki są już tylko lekką kontrolą.
+    Większość ćwiczeń wymaga słuchania albo pisania.
+  */
+  const roll=Math.random();
+
+  if(roll<.08){
+    return Math.random()<.5 ? 'es-pl' : 'pl-es';
+  }
+
+  const modes=[
+    'audio-pl',
+    'type-pl',
+    'type-es'
+  ];
+
+  return weightedMode(words,modes);
 }
 
 function record(w,mode,ok,accent=false){
