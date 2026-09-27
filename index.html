@@ -32,7 +32,16 @@ h2{font-size:15px;color:#6b7280;margin:4px 0}
 
 .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
 .col{display:flex;flex-direction:column;gap:9px}
-.esrow{display:grid;grid-template-columns:minmax(0,1fr) 38px;gap:5px}
+.esrow{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 38px;
+  gap:5px
+}
+
+.audioSpacer{
+  width:38px;
+  min-height:56px;
+}
 
 .word,.audio,.choice{
 border:2px solid #d1d5db;background:white;border-radius:14px;
@@ -668,26 +677,41 @@ function renderMatch(){
     modeEl.textContent='🇪🇸 HISZPAŃSKI → 🇵🇱 POLSKI';
 
     round.forEach(w=>{
-      const row=document.createElement('div');
-      row.className='esrow';
-      row.append(makeWord(w,w.es,'left'),makeAudio(w));
-      leftCol.append(row);
+      leftCol.append(
+        makeWord(w,w.es,'left')
+      );
     });
 
     shuffle(round).forEach(w=>{
-      rightCol.append(makeWord(w,w.pl,'right'));
+      const row=document.createElement('div');
+      row.className='esrow';
+
+      row.append(
+        makeWord(w,w.pl,'right'),
+        makeAudio(w)
+      );
+
+      rightCol.append(row);
     });
+
   }else{
     modeEl.textContent='🇵🇱 POLSKI → 🇪🇸 HISZPAŃSKI';
 
     round.forEach(w=>{
-      leftCol.append(makeWord(w,w.pl,'left'));
+      leftCol.append(
+        makeWord(w,w.pl,'left')
+      );
     });
 
     shuffle(round).forEach(w=>{
       const row=document.createElement('div');
       row.className='esrow';
-      row.append(makeWord(w,w.es,'right'),makeAudio(w));
+
+      row.append(
+        makeWord(w,w.es,'right'),
+        makeAudio(w)
+      );
+
       rightCol.append(row);
     });
   }
