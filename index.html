@@ -1,5 +1,5 @@
-<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111827"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css"><title>LinguaCore 0.8.0</title></head><body><main class="app">
-<header class="brand"><h1>🌍 LinguaCore</h1><p>Ucz się języka po swojemu <span class="version">v0.8.0</span></p></header>
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111827"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css"><title>LinguaCore 0.8.1</title></head><body><main class="app">
+<header class="brand"><h1>🌍 LinguaCore</h1><p>Ucz się języka po swojemu <span class="version">v0.8.1</span></p></header>
 <section id="profileScreen" class="screen"><h2 class="title">Utwórz profil</h2><p class="subtitle">Każdy profil ma własny postęp.</p><input id="profileName" class="input" placeholder="Nazwa profilu"><button id="createProfileBtn" class="primary">Utwórz profil</button><div id="existingProfiles"></div></section>
 <section id="courseScreen" class="screen"><div class="profile-chip"><div><small>PROFIL</small><div id="activeProfileName" class="profile-name">—</div></div><button id="changeProfileBtn" class="change-profile">Zmień</button></div><h2 class="title">Czego chcesz się uczyć?</h2><p class="subtitle">Każdy język zachowuje oddzielny postęp.</p>
 <button class="action-card course-card" data-course="english"><div class="card-row"><div class="flag">🇬🇧</div><div class="card-main"><div class="card-name">English</div><div class="card-info">British English • A1–B2</div></div><div class="arrow">›</div></div></button>
@@ -7,7 +7,19 @@
 <section id="levelScreen" class="screen"><button id="backToCourses" class="back">← Kursy</button><h2 id="levelTitle" class="title">Wybierz poziom</h2><p class="subtitle">Wybierz poziom startowy.</p><div id="levelGrid" class="level-grid"></div></section>
 <section id="readyScreen" class="screen"><button id="backToLevels" class="back">← Poziomy</button><h2 class="title">Kurs gotowy</h2><div class="card"><div id="readyCourse" class="card-name"></div><div id="readyLevel" class="card-info"></div></div><button id="startCourseBtn" class="primary">Rozpocznij naukę</button></section>
 <section id="lessonScreen" class="screen"><button id="backFromLesson" class="back">← Kurs</button><div class="lesson-top"><div>Nauka</div><div id="lessonCounter">1 / 5</div></div><div class="lesson-progress"><div id="lessonProgressBar" class="lesson-progress-bar"></div></div><div class="card lesson-card"><div class="subtitle">Wybierz poprawne tłumaczenie</div><div id="lessonPrompt" class="lesson-prompt"></div><button id="lessonSpeak" class="lesson-speak">🔊</button><div id="lessonChoices" class="lesson-choices"></div><div id="lessonFeedback" class="lesson-feedback"></div><button id="lessonContinue" class="primary lesson-continue">Dalej</button></div></section>
-<section id="summaryScreen" class="screen"><div class="lesson-summary"><div class="summary-icon">🎉</div><h2>Lekcja ukończona!</h2><p id="summaryScore"></p><div class="summary-stats"><div><strong id="summaryCorrect">0</strong><span>Poprawne</span></div><div><strong id="summaryWrong">0</strong><span>Błędne</span></div><div><strong id="summaryAccuracy">0%</strong><span>Skuteczność</span></div></div><button id="summaryNext" class="primary">Następna runda</button><button id="summaryContinue" class="secondary" style="margin-top:12px">Wróć do kursu</button></div></section>
+<section id="summaryScreen" class="screen"><div class="lesson-summary"><div class="summary-icon">🎉</div><h2>Lekcja ukończona!</h2><p id="summaryScore"></p><div class="summary-stats"><div><strong id="summaryCorrect">0</strong><span>Poprawne</span></div><div><strong id="summaryWrong">0</strong><span>Błędne</span></div><div><strong id="summaryAccuracy">0%</strong><span>Skuteczność</span></div></div>
+<div class="progress-panel">
+  <h3>Dzisiejsza sesja</h3>
+  <div class="progress-line"><span>Wynik dzisiaj</span><strong id="todayScore">0 / 0</strong></div>
+  <div class="progress-line"><span>Skuteczność dzisiaj</span><strong id="todayAccuracy">0%</strong></div>
+  <h3>Postęp poziomu</h3>
+  <div class="progress-line"><span>Poznane słowa</span><strong id="seenWords">0</strong></div>
+  <div class="progress-line"><span>Opanowane</span><strong id="masteredWords">0</strong></div>
+  <div class="progress-line"><span>Do powtórki</span><strong id="reviewWords">0</strong></div>
+  <div class="level-progress"><div id="levelProgressBar"></div></div>
+  <div id="levelProgressText" class="progress-caption">0% materiału poznane</div>
+</div>
+<button id="summaryNext" class="primary">Następna runda</button><button id="summaryContinue" class="secondary" style="margin-top:12px">Wróć do kursu</button></div></section>
 </main><script src="app.js"></script><script src="course-data.js"></script><script src="lesson-engine.js"></script><script>
 const $=id=>document.getElementById(id), screens=['profileScreen','courseScreen','levelScreen','readyScreen','lessonScreen','summaryScreen'];
 let selectedCourse=null,selectedLevel=null,currentLesson=[],idx=0,answered=false,startStats={correct:0,wrong:0};
@@ -19,7 +31,16 @@ function openLevels(c){selectedCourse=c;const lang=APP.languages[c];$('levelTitl
 function selectLevel(l){selectedLevel=l;const all=loadProfiles(),p=getActiveProfile(),sp=all[p.id],c=getCourse(sp,selectedCourse);c.level=l;saveProfiles(all);$('readyCourse').textContent=APP.languages[selectedCourse].flag+' '+APP.languages[selectedCourse].name;$('readyLevel').textContent='Poziom: '+l;show('readyScreen')}
 function startLesson(){const p=getActiveProfile();startStats=LinguaCoreEngine.getSummary(p.id,selectedCourse);currentLesson=LinguaCoreEngine.buildLesson(p.id,selectedCourse,selectedLevel,5);idx=0;show('lessonScreen');render()}
 function render(){const w=currentLesson[idx];answered=false;$('lessonCounter').textContent=(idx+1)+' / '+currentLesson.length;$('lessonProgressBar').style.width=((idx+1)/currentLesson.length*100)+'%';$('lessonPrompt').textContent=w.target;$('lessonFeedback').textContent='';$('lessonContinue').style.display='none';$('lessonSpeak').onclick=()=>LinguaCoreEngine.speak(w.target,selectedCourse);const pool=LinguaCoreEngine.wordsForLevel(selectedCourse,selectedLevel).filter(x=>x.id!==w.id).sort(()=>Math.random()-.5);const ans=[w.pl,...pool.slice(0,3).map(x=>x.pl)].sort(()=>Math.random()-.5);$('lessonChoices').innerHTML='';ans.forEach(a=>{const b=document.createElement('button');b.className='lesson-choice';b.textContent=a;b.onclick=()=>{if(answered)return;answered=true;const ok=a===w.pl;LinguaCoreEngine.recordAnswer(getActiveProfile().id,selectedCourse,w.id,ok);$('lessonFeedback').textContent=ok?'✅ Dobrze!':'❌ Poprawna odpowiedź: '+w.pl;[...$('lessonChoices').children].forEach(x=>x.disabled=true);$('lessonContinue').style.display='block'};$('lessonChoices').append(b)})}
-$('lessonContinue').onclick=()=>{idx++;if(idx<currentLesson.length)return render();const s=LinguaCoreEngine.getSummary(getActiveProfile().id,selectedCourse),c=s.correct-startStats.correct,w=s.wrong-startStats.wrong,t=c+w;$('summaryCorrect').textContent=c;$('summaryWrong').textContent=w;$('summaryAccuracy').textContent=(t?Math.round(c/t*100):0)+'%';$('summaryScore').textContent='Wynik: '+c+' / '+t;show('summaryScreen')};
+$('lessonContinue').onclick=()=>{idx++;if(idx<currentLesson.length)return render();const s=LinguaCoreEngine.getSummary(getActiveProfile().id,selectedCourse),c=s.correct-startStats.correct,w=s.wrong-startStats.wrong,t=c+w;$('summaryCorrect').textContent=c;$('summaryWrong').textContent=w;$('summaryAccuracy').textContent=(t?Math.round(c/t*100):0)+'%';$('summaryScore').textContent='Wynik rundy: '+c+' / '+t;
+const pr=LinguaCoreEngine.getProgress(getActiveProfile().id,selectedCourse,selectedLevel),dt=pr.todayCorrect+pr.todayWrong;
+$('todayScore').textContent=pr.todayCorrect+' / '+dt;
+$('todayAccuracy').textContent=(dt?Math.round(pr.todayCorrect/dt*100):0)+'%';
+$('seenWords').textContent=pr.seen+' / '+pr.total;
+$('masteredWords').textContent=pr.mastered;
+$('reviewWords').textContent=pr.review;
+const pct=pr.total?Math.round(pr.seen/pr.total*100):0;
+$('levelProgressBar').style.width=pct+'%';$('levelProgressText').textContent=pct+'% materiału poznane';
+show('summaryScreen')};
 $('summaryNext').onclick=startLesson;$('summaryContinue').onclick=()=>openLevels(selectedCourse);$('startCourseBtn').onclick=startLesson;
 $('createProfileBtn').onclick=()=>{if(createProfile($('profileName').value))openCourses()};$('changeProfileBtn').onclick=openProfile;$('backToCourses').onclick=openCourses;$('backToLevels').onclick=()=>openLevels(selectedCourse);$('backFromLesson').onclick=()=>openLevels(selectedCourse);document.querySelectorAll('.course-card').forEach(b=>b.onclick=()=>openLevels(b.dataset.course));
 if(getActiveProfile())openCourses();else openProfile();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
