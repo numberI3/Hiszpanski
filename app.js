@@ -2,12 +2,12 @@
   LinguaCore
   Universal language-learning engine
 
-  Version: 0.6
+  Version: 0.7
 */
 
 const APP = {
   name: 'LinguaCore',
-  version: '0.6',
+  version: '0.7',
 
   languages: {
     english: {

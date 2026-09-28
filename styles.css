@@ -393,3 +393,107 @@ button,input{font:inherit}
     font-size:30px;
   }
 }
+
+
+/* =========================================================
+   LinguaCore 0.7 — class alignment for current index.html
+   ========================================================= */
+.lesson-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:8px;
+}
+.lesson-mode{
+  color:#2563eb;
+  font-size:14px;
+  font-weight:800;
+}
+.lesson-prompt{
+  font-size:34px;
+  line-height:1.15;
+  font-weight:800;
+  margin:10px 0 18px;
+  overflow-wrap:anywhere;
+}
+.lesson-speak{
+  width:64px;
+  height:64px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #d1d5db;
+  border-radius:18px;
+  background:#fff;
+  font-size:28px;
+  cursor:pointer;
+  margin:4px auto 14px;
+}
+.lesson-speak:active{transform:scale(.96)}
+.lesson-choices{
+  display:grid;
+  gap:10px;
+  margin-top:18px;
+}
+.lesson-choice{
+  width:100%;
+  min-height:58px;
+  border:2px solid #d1d5db;
+  border-radius:16px;
+  background:#fff;
+  color:#111827;
+  padding:12px 14px;
+  font-size:17px;
+  font-weight:700;
+  cursor:pointer;
+}
+.lesson-choice:active{transform:scale(.99)}
+.lesson-choice:disabled{cursor:default;opacity:1}
+.lesson-typing{display:none}
+.lesson-typing input{
+  width:100%;
+  border:2px solid #d1d5db;
+  border-radius:16px;
+  background:#fff;
+  padding:16px;
+  font-size:18px;
+  outline:none;
+  margin-top:16px;
+}
+.lesson-continue{display:none}
+.lesson-summary{
+  background:#fff;
+  border:2px solid #e5e7eb;
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  margin-top:20px;
+}
+.summary-icon{font-size:48px}
+.lesson-summary h2{margin:8px 0}
+.summary-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin:22px 0;
+}
+.summary-stats>div{
+  background:#f6f7fb;
+  border-radius:14px;
+  padding:14px 6px;
+}
+.summary-stats strong{
+  display:block;
+  font-size:24px;
+}
+.summary-stats span{
+  display:block;
+  margin-top:4px;
+  color:#6b7280;
+  font-size:12px;
+}
+@media(max-width:390px){
+  .lesson-prompt{font-size:30px}
+  .summary-stats{gap:5px}
+}

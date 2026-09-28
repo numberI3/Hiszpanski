@@ -4,1125 +4,804 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="manifest" href="manifest.webmanifest">
-<title>Español 0.5</title>
 
-<style>
-:root{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-*{box-sizing:border-box}
-body{margin:0;background:#f6f7fb;color:#111827}
-button,input{font:inherit}
-.wrap{max-width:700px;margin:auto;padding:16px;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
-.version{font-size:12px;color:#9ca3af}
-h1{font-size:28px;margin:8px 0 0}
-h2{font-size:15px;color:#6b7280;margin:4px 0}
+<title>LinguaCore 0.7</title>
 
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:15px 0}
-.stat{background:white;border-radius:14px;padding:9px 3px;text-align:center;box-shadow:0 2px 10px #0001}
-.stat b{display:block;font-size:18px}
-.stat span{font-size:10px;color:#6b7280}
-
-.progress{height:10px;background:#e5e7eb;border-radius:9px;overflow:hidden;margin:12px 0}
-.bar{height:100%;background:#22c55e;width:0;transition:width .2s}
-
-.mode{text-align:center;font-size:12px;font-weight:800;color:#3b82f6;margin:9px 0 3px}
-.status{text-align:center;min-height:32px;font-weight:750;margin:10px 0 12px}
-
-.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
-.col{display:flex;flex-direction:column;gap:9px}
-.esrow{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 38px;
-  gap:5px
-}
-
-.audioSpacer{
-  width:38px;
-  min-height:56px;
-}
-
-.word,.audio,.choice{
-border:2px solid #d1d5db;background:white;border-radius:14px;
-font-weight:650;min-height:56px;box-shadow:0 2px 8px #0000000b
-}
-.word,.choice{font-size:16px;padding:11px 6px;overflow-wrap:anywhere}
-.audio{font-size:17px;padding:0}
-.word.selected{border-color:#3b82f6;background:#eff6ff}
-.word.good,.choice.good{border-color:#16a34a;background:#dcfce7}
-.word.bad,.choice.bad{border-color:#dc2626;background:#fee2e2}
-.done{visibility:hidden}
-
-.card{background:white;border-radius:20px;padding:18px 14px;margin-top:4px;box-shadow:0 2px 12px #0001}
-.prompt{text-align:center;font-size:25px;font-weight:800;margin:6px 0 14px}
-.listen{
-display:block;margin:4px auto 16px;border:0;border-radius:50%;
-width:76px;height:76px;font-size:31px;background:#111827;color:white
-}
-.choices{display:grid;grid-template-columns:1fr;gap:9px}
-.choice{width:100%}
-
-.typebox{display:none}
-.typebox.active{display:block}
-.answer{
-width:100%;border:2px solid #d1d5db;border-radius:14px;
-padding:14px;font-size:18px;text-align:center;outline:none
-}
-.answer:focus{border-color:#3b82f6}
-.check{
-width:100%;border:0;border-radius:14px;padding:14px;margin-top:10px;
-font-weight:800;font-size:17px;background:#2563eb;color:white
-}
-.reveal{text-align:center;min-height:27px;margin-top:10px;font-weight:750}
-.hint{text-align:center;color:#6b7280;font-size:12px;margin:8px 0}
-
-.bottom{background:white;border-radius:18px;padding:14px;margin-top:15px;box-shadow:0 2px 10px #0001}
-.btn{width:100%;border:0;border-radius:14px;padding:15px;font-weight:800;font-size:17px;background:#111827;color:white}
-.small{text-align:center;color:#6b7280;font-size:12px;line-height:1.4;margin-top:10px}
-
-@media(max-width:390px){
-.wrap{padding:11px}
-.stats{gap:4px}
-.stat b{font-size:16px}
-.grid{gap:6px}
-.word,.choice{font-size:15px;padding:9px 4px}
-.esrow{grid-template-columns:minmax(0,1fr) 35px;gap:4px}
-.audio{font-size:16px}
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-<div class="wrap">
 
-<h1>🇪🇸 Español</h1>
-<h2>A1 • inteligentne powtórki <span class="version">v0.5</span></h2>
+<main class="app">
 
-<div class="stats">
-<div class="stat"><b id="newN">0</b><span>NOWE</span></div>
-<div class="stat"><b id="dueN">0</b><span>POWTÓRKI</span></div>
-<div class="stat"><b id="learnN">0</b><span>UCZĘ SIĘ</span></div>
-<div class="stat"><b id="masterN">0</b><span>UTRWALONE</span></div>
-</div>
+<header class="brand">
+<h1>🌍 LinguaCore</h1>
+<p>
+Ucz się języka po swojemu
+<span class="version">v0.7</span>
+</p>
+</header>
 
-<div class="progress"><div id="bar" class="bar"></div></div>
-<div id="mode" class="mode"></div>
-<div id="status" class="status"></div>
 
-<div id="matchArea" class="grid" style="display:none">
-<div id="leftCol" class="col"></div>
-<div id="rightCol" class="col"></div>
-</div>
+<!-- PROFIL -->
 
-<div id="singleArea" class="card" style="display:none">
-<div id="prompt" class="prompt"></div>
-<button id="listen" class="listen" type="button">🔊</button>
+<section id="profileScreen" class="screen">
 
-<div id="choiceBox" class="choices"></div>
+<h2 class="title">Utwórz profil</h2>
 
-<div id="typeBox" class="typebox">
-<input id="answer" class="answer"
-       autocomplete="off" autocapitalize="none"
-       spellcheck="false" enterkeyhint="done"
-       placeholder="Wpisz odpowiedź">
-<button id="check" class="check" type="button">Sprawdź</button>
-<button id="giveUp" class="check secondary" type="button" style="display:none">
-Nie wiem — pokaż odpowiedź
+<p class="subtitle">
+Każdy profil ma własne postępy, poziomy i inteligentne powtórki.
+</p>
+
+<input
+id="profileName"
+class="input"
+type="text"
+maxlength="30"
+autocomplete="off"
+placeholder="Nazwa profilu">
+
+<button id="createProfileBtn" class="primary">
+Utwórz profil
 </button>
-<button id="continueBtn" class="check" type="button" style="display:none">
-Dalej
+
+<div id="existingProfiles"></div>
+
+</section>
+
+
+<!-- KURSY -->
+
+<section id="courseScreen" class="screen">
+
+<div class="profile-chip">
+
+<div>
+<div style="font-size:11px;color:#6b7280">
+PROFIL
+</div>
+
+<div id="activeProfileName" class="profile-name">
+—
+</div>
+</div>
+
+<button id="changeProfileBtn" class="change-profile">
+Zmień
 </button>
-<div id="reveal" class="reveal"></div>
-</div>
-</div>
-
-<div class="bottom">
-<button class="btn" id="next" type="button">Następna runda</button>
-<div class="small">
-Nowe słowa zaczynają od łatwiejszych ćwiczeń. Z czasem dochodzi słuchanie i pisanie.
-Błędy w konkretnym trybie powodują częstszy powrót właśnie tego rodzaju zadania.
-</div>
-</div>
 
 </div>
 
+
+<h2 class="title">
+Czego chcesz się uczyć?
+</h2>
+
+<p class="subtitle">
+Wybierz kurs. Każdy język zachowuje oddzielny postęp.
+</p>
+
+
+<button class="card action-card course-card" data-course="english">
+
+<div class="card-row">
+
+<div class="flag">🇬🇧</div>
+
+<div class="card-main">
+<div class="card-name">English</div>
+<div class="card-info">
+British English • A1–B2
+</div>
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+</button>
+
+
+<button class="card action-card course-card" data-course="spanish">
+
+<div class="card-row">
+
+<div class="flag">🇪🇸</div>
+
+<div class="card-main">
+<div class="card-name">Español</div>
+<div class="card-info">
+A1 • obecny kurs
+</div>
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+
+</button>
+
+</section>
+
+
+<!-- POZIOM -->
+
+<section id="levelScreen" class="screen">
+
+<button id="backToCourses" class="back">
+← Kursy
+</button>
+
+<h2 id="levelTitle" class="title">
+Wybierz poziom
+</h2>
+
+<p id="levelSubtitle" class="subtitle">
+Wybierz poziom startowy.
+</p>
+
+<div id="levelGrid" class="level-grid"></div>
+
+<button id="placementBtn" class="secondary">
+🎯 Nie znam poziomu — sprawdź mnie
+</button>
+
+<div class="notice">
+Poziom startowy nie będzie ograniczeniem.
+LinguaCore będzie później dostosowywać trudność do wyników.
+</div>
+
+</section>
+
+
+<!-- POTWIERDZENIE -->
+
+<section id="readyScreen" class="screen">
+
+<button id="backToLevels" class="back">
+← Poziomy
+</button>
+
+<h2 class="title">
+Kurs gotowy
+</h2>
+
+<p id="readyText" class="subtitle"></p>
+
+<div class="card">
+
+<div id="readyCourse" class="card-name"></div>
+
+<div id="readyLevel" class="card-info"></div>
+
+</div>
+
+<button id="startCourseBtn" class="primary">
+Rozpocznij naukę
+</button>
+
+<p class="subtitle" style="margin-top:14px">
+Lekcja zawiera 5 pytań. Wynik zostanie pokazany po jej ukończeniu.
+</p>
+
+</section>
+<!-- LEKCJA -->
+
+<section id="lessonScreen" class="screen">
+
+  <button id="backFromLesson" class="back">
+    ← Kurs
+  </button>
+
+  <div class="lesson-top">
+    <div id="lessonMode" class="lesson-mode">
+      Nauka
+    </div>
+
+    <div id="lessonCounter" class="lesson-counter">
+      1 / 5
+    </div>
+  </div>
+
+  <div class="lesson-progress">
+    <div id="lessonProgressBar" class="lesson-progress-bar"></div>
+  </div>
+
+  <div class="card lesson-card">
+
+    <div id="lessonInstruction" class="subtitle">
+      Wybierz poprawne tłumaczenie
+    </div>
+
+    <div id="lessonPrompt" class="lesson-prompt">
+      word
+    </div>
+
+    <button id="lessonSpeak" class="lesson-speak" type="button">
+      🔊
+    </button>
+
+    <div id="lessonChoices" class="lesson-choices">
+    </div>
+
+    <div id="lessonTyping" class="lesson-typing">
+      <input
+        id="lessonAnswer"
+        type="text"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+        placeholder="Wpisz odpowiedź"
+      >
+
+      <button id="lessonCheck" class="primary" type="button">
+        Sprawdź
+      </button>
+    </div>
+
+    <div id="lessonFeedback" class="lesson-feedback">
+    </div>
+
+    <button id="lessonContinue" class="primary lesson-continue" type="button">
+      Dalej
+    </button>
+
+  </div>
+
+</section>
+<section id="summaryScreen" class="screen">
+
+  <div class="lesson-summary">
+
+    <div class="summary-icon">🎉</div>
+
+    <h2>Lekcja ukończona!</h2>
+
+    <p id="summaryScore"></p>
+
+    <div class="summary-stats">
+      <div>
+        <strong id="summaryCorrect">0</strong>
+        <span>Poprawne</span>
+      </div>
+
+      <div>
+        <strong id="summaryWrong">0</strong>
+        <span>Błędne</span>
+      </div>
+
+      <div>
+        <strong id="summaryAccuracy">0%</strong>
+        <span>Skuteczność</span>
+      </div>
+    </div>
+
+    <button id="summaryContinue" class="primary">
+      Wróć do kursu
+    </button>
+
+  </div>
+
+</section>
+</main>
+
+
+<script src="app.js"></script>
+<script src="lesson-engine.js"></script>
 <script>
-const RAW=`hola|cześć
-gracias|dziękuję
-adiós|do widzenia
-por favor|proszę
-sí|tak
-no|nie
-bien|dobrze
-mal|źle
-hombre|mężczyzna
-mujer|kobieta
-niño|chłopiec
-niña|dziewczynka
-amigo|przyjaciel
-amiga|przyjaciółka
-familia|rodzina
-madre|matka
-padre|ojciec
-hermano|brat
-hermana|siostra
-hijo|syn
-hija|córka
-casa|dom
-puerta|drzwi
-ventana|okno
-mesa|stół
-silla|krzesło
-cama|łóżko
-cocina|kuchnia
-baño|łazienka
-habitación|pokój
-calle|ulica
-ciudad|miasto
-pueblo|miasteczko
-país|kraj
-escuela|szkoła
-trabajo|praca
-oficina|biuro
-tienda|sklep
-restaurante|restauracja
-hotel|hotel
-hospital|szpital
-aeropuerto|lotnisko
-estación|stacja
-coche|samochód
-autobús|autobus
-tren|pociąg
-avión|samolot
-bicicleta|rower
-camino|droga
-agua|woda
-café|kawa
-té|herbata
-leche|mleko
-pan|chleb
-queso|ser
-carne|mięso
-pescado|ryba
-pollo|kurczak
-huevo|jajko
-arroz|ryż
-patata|ziemniak
-fruta|owoc
-manzana|jabłko
-naranja|pomarańcza
-verdura|warzywo
-sal|sól
-azúcar|cukier
-desayuno|śniadanie
-comida|jedzenie
-cena|kolacja
-comer|jeść
-beber|pić
-cocinar|gotować
-comprar|kupować
-pagar|płacić
-ir|iść
-venir|przychodzić
-ver|widzieć
-mirar|patrzeć
-hablar|mówić
-escuchar|słuchać
-leer|czytać
-escribir|pisać
-aprender|uczyć się
-entender|rozumieć
-saber|wiedzieć
-conocer|znać
-querer|chcieć
-necesitar|potrzebować
-tener|mieć
-hacer|robić
-ser|być
-estar|być / znajdować się
-vivir|mieszkać
-dormir|spać
-trabajar|pracować
-jugar|grać
-abrir|otwierać
-cerrar|zamykać
-empezar|zaczynać
-terminar|kończyć
-día|dzień
-noche|noc
-mañana|rano / jutro
-tarde|popołudnie
-hoy|dzisiaj
-ayer|wczoraj
-semana|tydzień
-mes|miesiąc
-año|rok
-hora|godzina
-minuto|minuta
-tiempo|czas / pogoda
-uno|jeden
-dos|dwa
-tres|trzy
-cuatro|cztery
-cinco|pięć
-seis|sześć
-siete|siedem
-ocho|osiem
-nueve|dziewięć
-diez|dziesięć
-grande|duży
-pequeño|mały
-bueno|dobry
-malo|zły
-nuevo|nowy
-viejo|stary
-bonito|ładny
-feo|brzydki
-rápido|szybki
-lento|wolny
-fácil|łatwy
-difícil|trudny
-caliente|gorący
-frío|zimny
-feliz|szczęśliwy
-triste|smutny
-cansado|zmęczony
-enfermo|chory
-aquí|tutaj
-allí|tam
-cerca|blisko
-lejos|daleko
-dentro|wewnątrz
-fuera|na zewnątrz
-arriba|na górze
-abajo|na dole
-izquierda|lewo
-derecha|prawo
-qué|co
-quién|kto
-dónde|gdzie
-cuándo|kiedy
-cómo|jak
-por qué|dlaczego
-cuánto|ile
-y|i
-o|lub
-pero|ale
-porque|ponieważ
-con|z
-sin|bez
-para|dla / żeby
-de|z / od
-en|w / na
-mi|mój
-tu|twój
-su|jego / jej
-nombre|imię
-número|numer
-dinero|pieniądze
-precio|cena
-teléfono|telefon
-libro|książka
-palabra|słowo
-pregunta|pytanie
-respuesta|odpowiedź
-problema|problem
-ayuda|pomoc
-médico|lekarz
-policía|policja
-mano|dłoń
-cabeza|głowa
-ojo|oko
-boca|usta
-pie|stopa
-ropa|ubranie
-camisa|koszula
-pantalón|spodnie
-zapato|but
-sol|słońce
-lluvia|deszcz
-mar|morze
-montaña|góra
-perro|pies
-gato|kot`;
 
-const WORDS=RAW.split('\n').map((x,i)=>{
-  const [es,pl]=x.split('|');
-  return {id:i,es,pl};
+const profileScreen=document.getElementById('profileScreen');
+const courseScreen=document.getElementById('courseScreen');
+const levelScreen=document.getElementById('levelScreen');
+const readyScreen=document.getElementById('readyScreen');
+const lessonScreen=document.getElementById('lessonScreen');
+const summaryScreen=document.getElementById('summaryScreen');
+const summaryCorrect=document.getElementById('summaryCorrect');
+const summaryWrong=document.getElementById('summaryWrong');
+const summaryAccuracy=document.getElementById('summaryAccuracy');
+const summaryContinue=document.getElementById('summaryContinue');
+const lessonMode=document.getElementById('lessonMode');
+const lessonCounter=document.getElementById('lessonCounter');
+const lessonProgressBar=document.getElementById('lessonProgressBar');
+const lessonInstruction=document.getElementById('lessonInstruction');
+const lessonPrompt=document.getElementById('lessonPrompt');
+const lessonSpeak=document.getElementById('lessonSpeak');
+const lessonChoices=document.getElementById('lessonChoices');
+const lessonTyping=document.getElementById('lessonTyping');
+const lessonAnswer=document.getElementById('lessonAnswer');
+const lessonCheck=document.getElementById('lessonCheck');
+const lessonFeedback=document.getElementById('lessonFeedback');
+const lessonContinue=document.getElementById('lessonContinue');
+const profileName=document.getElementById('profileName');
+const createProfileBtn=document.getElementById('createProfileBtn');
+const existingProfiles=document.getElementById('existingProfiles');
+
+const activeProfileName=document.getElementById('activeProfileName');
+const changeProfileBtn=document.getElementById('changeProfileBtn');
+
+const levelTitle=document.getElementById('levelTitle');
+const levelSubtitle=document.getElementById('levelSubtitle');
+const levelGrid=document.getElementById('levelGrid');
+const placementBtn=document.getElementById('placementBtn');
+
+const readyText=document.getElementById('readyText');
+const readyCourse=document.getElementById('readyCourse');
+const readyLevel=document.getElementById('readyLevel');
+
+let selectedCourse=null;
+let selectedLevel=null;
+let currentLesson=[];
+let currentLessonIndex=0;
+let currentWord=null;
+let currentExerciseType=null;
+let currentAnswered=false;
+let lessonCorrect=0;
+let lessonWrong=0;
+let lessonStartSummary={correct:0,wrong:0};
+function showScreen(screen){
+
+[
+profileScreen,
+courseScreen,
+levelScreen,
+readyScreen,
+lessonScreen,
+summaryScreen
+].forEach(s=>s.classList.remove('active'));
+
+screen.classList.add('active');
+
+window.scrollTo(0,0);
+}
+
+
+function renderProfiles(){
+
+const profiles=loadProfiles();
+
+existingProfiles.innerHTML='';
+
+const values=Object.values(profiles);
+
+if(!values.length)return;
+
+const title=document.createElement('p');
+
+title.className='subtitle';
+title.style.marginTop='24px';
+title.textContent='Lub wybierz istniejący profil:';
+
+existingProfiles.append(title);
+
+values.forEach(profile=>{
+
+const button=document.createElement('button');
+
+button.className='card action-card';
+
+button.innerHTML=`
+<div class="card-row">
+
+<div class="flag">👤</div>
+
+<div class="card-main">
+<div class="card-name"></div>
+<div class="card-info">Kontynuuj naukę</div>
+</div>
+
+<div class="arrow">›</div>
+
+</div>
+`;
+
+button.querySelector('.card-name').textContent=profile.name;
+
+button.onclick=()=>{
+
+setActiveProfile(profile.id);
+
+openCourses();
+
+};
+
+existingProfiles.append(button);
+
 });
 
-const ROUND=5;
-const DAY=86400000;
-const UNLOCK_BATCH=10;
+}
 
-let stats=JSON.parse(localStorage.getItem('esStatsV2')||'{}');
-let meta=JSON.parse(localStorage.getItem('esMetaV2')||'{"unlocked":10}');
-let skills=JSON.parse(localStorage.getItem('esSkillsV4')||'{}');
 
-meta.unlocked=Math.max(10,Math.min(WORDS.length,meta.unlocked||10));
+function openProfileScreen(){
 
-const newN=document.getElementById('newN');
-const dueN=document.getElementById('dueN');
-const learnN=document.getElementById('learnN');
-const masterN=document.getElementById('masterN');
-const bar=document.getElementById('bar');
-const modeEl=document.getElementById('mode');
-const statusEl=document.getElementById('status');
-const matchArea=document.getElementById('matchArea');
-const singleArea=document.getElementById('singleArea');
-const leftCol=document.getElementById('leftCol');
-const rightCol=document.getElementById('rightCol');
-const promptEl=document.getElementById('prompt');
-const listenBtn=document.getElementById('listen');
-const choiceBox=document.getElementById('choiceBox');
-const typeBox=document.getElementById('typeBox');
-const answerEl=document.getElementById('answer');
-const checkBtn=document.getElementById('check');
-const giveUpBtn=document.getElementById('giveUp');
-const continueBtn=document.getElementById('continueBtn');
-const revealEl=document.getElementById('reveal');
+renderProfiles();
 
-let typedMistakeRecorded=false;
-const nextBtn=document.getElementById('next');
+profileName.value='';
 
-let round=[];
-let roundMode='';
-let left=null;
-let right=null;
-let done=0;
-let currentIndex=0;
-let locked=false;
+showScreen(profileScreen);
 
-const now=()=>Date.now();
+}
 
-function shuffle(a){
-  const b=[...a];
-  for(let i=b.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [b[i],b[j]]=[b[j],b[i]];
+
+function openCourses(){
+
+const profile=getActiveProfile();
+
+if(!profile){
+
+openProfileScreen();
+
+return;
+
+}
+
+activeProfileName.textContent=profile.name;
+
+showScreen(courseScreen);
+
+}
+
+
+function openLevels(courseId){
+
+selectedCourse=courseId;
+
+const course=APP.languages[courseId];
+
+levelTitle.textContent=
+course.flag+' '+course.name;
+
+levelSubtitle.textContent=
+'Wybierz poziom startowy';
+
+levelGrid.innerHTML='';
+
+course.levels.forEach(level=>{
+
+const button=document.createElement('button');
+
+button.className='level';
+
+button.innerHTML=
+level+
+'<small>Rozpocznij tutaj</small>';
+
+button.onclick=()=>selectLevel(level);
+
+levelGrid.append(button);
+
+});
+
+
+if(courseId==='english'){
+
+placementBtn.style.display='block';
+
+}else{
+
+placementBtn.style.display='none';
+
+}
+
+showScreen(levelScreen);
+
+}
+
+
+function selectLevel(level){
+
+selectedLevel=level;
+
+const profile=getActiveProfile();
+const course=APP.languages[selectedCourse];
+
+const profiles=loadProfiles();
+const storedProfile=profiles[profile.id];
+
+const courseData=getCourse(
+storedProfile,
+selectedCourse
+);
+
+courseData.level=level;
+
+saveProfiles(profiles);
+
+readyText.textContent=
+'Profil „'+profile.name+
+'” jest gotowy do rozpoczęcia kursu.';
+
+readyCourse.textContent=
+course.flag+' '+course.name;
+
+readyLevel.textContent=
+'Poziom startowy: '+level;
+
+showScreen(readyScreen);
+
+}
+
+
+createProfileBtn.onclick=()=>{
+
+const profile=createProfile(
+profileName.value
+);
+
+if(!profile){
+
+profileName.focus();
+
+return;
+
+}
+
+openCourses();
+
+};
+
+
+profileName.addEventListener('keydown',event=>{
+
+if(event.key==='Enter'){
+
+event.preventDefault();
+
+createProfileBtn.click();
+
+}
+
+});
+
+
+changeProfileBtn.onclick=()=>{
+openProfileScreen();
+};
+
+
+document.querySelectorAll('.course-card')
+.forEach(button=>{
+
+button.onclick=()=>{
+
+openLevels(
+button.dataset.course
+);
+
+};
+
+});
+
+
+document.getElementById('backToCourses').onclick=()=>{
+openCourses();
+};
+
+
+document.getElementById('backToLevels').onclick=()=>{
+openLevels(selectedCourse);
+};
+
+
+placementBtn.onclick=()=>{
+
+alert(
+'Test poziomujący dodamy w kolejnym etapie. Na razie wybierz poziom ręcznie.'
+);
+
+};
+
+function renderLessonExercise(){
+
+  currentWord=currentLesson[currentLessonIndex];
+
+  if(!currentWord){
+    return;
   }
-  return b;
-}
 
-function S(w){
-  return stats[w.id]||{
-    stage:0,right:0,wrong:0,streak:0,due:0,last:0
-  };
-}
+  currentAnswered=false;
 
-function defaultSkill(){
-  return {
-    "es-pl":{r:0,w:0},
-    "pl-es":{r:0,w:0},
-    "audio-pl":{r:0,w:0},
-    "type-pl":{r:0,w:0},
-    "type-es":{r:0,w:0}
-  };
-}
+  const profile=getActiveProfile();
 
-function K(w){
-  if(!skills[w.id]) skills[w.id]=defaultSkill();
-  return skills[w.id];
-}
+  currentExerciseType='recognition';
 
-function save(){
-  localStorage.setItem('esStatsV2',JSON.stringify(stats));
-  localStorage.setItem('esMetaV2',JSON.stringify(meta));
-  localStorage.setItem('esSkillsV4',JSON.stringify(skills));
-}
+  lessonCounter.textContent=
+    (currentLessonIndex+1)+' / '+currentLesson.length;
 
-function getBestVoice(lang){
-  const voices=speechSynthesis.getVoices();
+  lessonProgressBar.style.width=
+    (((currentLessonIndex+1)/currentLesson.length)*100)+'%';
 
-  const exact=voices.filter(v=>
-    v.lang.toLowerCase()===lang.toLowerCase()
-  );
+  lessonMode.textContent='Nauka';
 
-  const sameLanguage=voices.filter(v=>
-    v.lang.toLowerCase().startsWith(lang.slice(0,2).toLowerCase())
-  );
+  lessonInstruction.textContent=
+    'Wybierz poprawne tłumaczenie';
 
-  const candidates=exact.length ? exact : sameLanguage;
+  lessonPrompt.textContent=currentWord.target;
 
-  if(!candidates.length)return null;
+  lessonFeedback.textContent='';
 
-  const preferredNames=[
-    'Mónica',
-    'Monica',
-    'Paulina',
-    'Jorge',
-    'Marisol',
-    'Siri'
-  ];
+  lessonContinue.style.display='none';
+  lessonTyping.style.display='none';
+  lessonChoices.style.display='grid';
 
-  for(const name of preferredNames){
-    const found=candidates.find(v=>
-      v.name.toLowerCase().includes(name.toLowerCase())
+  lessonChoices.innerHTML='';
+
+  lessonSpeak.style.display='inline-flex';
+
+  lessonSpeak.onclick=()=>{
+    LinguaCoreEngine.speak(
+      currentWord.target,
+      selectedCourse
     );
-    if(found)return found;
-  }
-
-  return candidates[0];
-}
-
-function speak(text,lang='es-ES'){
-  if(!('speechSynthesis' in window))return;
-
-  speechSynthesis.cancel();
-
-  const u=new SpeechSynthesisUtterance(text);
-  u.lang=lang;
-
-  const voice=getBestVoice(lang);
-  if(voice)u.voice=voice;
-
-  if(lang.startsWith('es')){
-    u.rate=.92;
-    u.pitch=1;
-  }else{
-    u.rate=.95;
-    u.pitch=1;
-  }
-
-  speechSynthesis.speak(u);
-}
-
-function normalizeBase(t){
-  return t.trim().toLocaleLowerCase()
-    .replace(/[.,!?¿¡"'’]/g,'')
-    .replace(/\s+/g,' ');
-}
-
-function stripMarks(t){
-  return normalizeBase(t)
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g,'');
-}
-
-function compareAnswer(input,target,language){
-  const a=normalizeBase(input);
-  const b=normalizeBase(target);
-
-  if(a===b)return {ok:true,accent:false};
-
-  if(stripMarks(a)===stripMarks(b)){
-    return {ok:true,accent:language==='es'};
-  }
-
-  return {ok:false,accent:false};
-}
-
-function priority(w){
-  const s=S(w);
-
-  if(s.due && s.due<=now())
-    return 120+s.wrong*9-s.streak*2;
-
-  if(!stats[w.id] || s.stage===0)
-    return 80;
-
-  if(s.stage<4)
-    return 45+s.wrong*6-s.streak;
-
-  return 5+Math.random()*8;
-}
-
-function pickWords(){
-  return WORDS.slice(0,meta.unlocked)
-    .map(w=>[w,priority(w)+Math.random()*12])
-    .sort((a,b)=>b[1]-a[1])
-    .slice(0,ROUND)
-    .map(x=>x[0]);
-}
-
-function dueDelay(s){
-  if(s.stage<=1)return 10*60*1000;
-  if(s.stage===2)return DAY;
-  if(s.stage===3)return 4*DAY;
-  if(s.stage===4)return 14*DAY;
-  return 30*DAY;
-}
-
-function updateStats(){
-  let n=0,d=0,l=0,m=0;
-
-  WORDS.slice(0,meta.unlocked).forEach(w=>{
-    const s=S(w);
-
-    if(!stats[w.id] || s.stage===0)n++;
-    if(stats[w.id] && s.due && s.due<=now())d++;
-    if(stats[w.id] && s.stage>0 && s.stage<4)l++;
-    if(stats[w.id] && s.stage>=4)m++;
-  });
-
-  newN.textContent=n;
-  dueN.textContent=d;
-  learnN.textContent=l;
-  masterN.textContent=m;
-}
-
-function modeWeakness(w,mode){
-  const k=K(w)[mode];
-  return (k.w*3)-k.r;
-}
-function weightedMode(words,modes){
-  const scored=modes.map(mode=>{
-    let score=Math.random()*3;
-
-    words.forEach(w=>{
-      score+=Math.max(0,modeWeakness(w,mode))*2;
-    });
-
-    return [mode,score];
-  });
-
-  scored.sort((a,b)=>b[1]-a[1]);
-
-  /*
-    75%: ćwiczymy najsłabszą umiejętność.
-    25%: losujemy dla urozmaicenia.
-  */
-  if(Math.random()<.75){
-    return scored[0][0];
-  }
-
-  return modes[Math.floor(Math.random()*modes.length)];
-}
-function chooseMode(words){
-  const stages=words.map(w=>S(w).stage);
-  const minStage=Math.min(...stages);
-  const avgStage=stages.reduce((a,b)=>a+b,0)/stages.length;
-
-  /*
-    Nowe słowa:
-    najpierw poznajemy znaczenie przez kafelki.
-  */
-  if(minStage===0){
-    return Math.random()<.5 ? 'es-pl' : 'pl-es';
-  }
-
-  /*
-    Słowa na bardzo wczesnym etapie:
-    nadal dużo rozpoznawania, ale zaczynamy słuchanie.
-  */
-  if(avgStage<2){
-    const modes=[
-      'es-pl',
-      'pl-es',
-      'audio-pl'
-    ];
-
-    return weightedMode(words,modes);
-  }
-
-  /*
-    Średnio opanowane:
-    ograniczamy kafelki i zwiększamy aktywne przypominanie.
-  */
-  if(avgStage<3.5){
-    const roll=Math.random();
-
-    if(roll<.15){
-      return Math.random()<.5 ? 'es-pl' : 'pl-es';
-    }
-
-    const modes=[
-      'audio-pl',
-      'type-pl',
-      'type-es'
-    ];
-
-    return weightedMode(words,modes);
-  }
-
-  /*
-    Dobrze znane słowa:
-    kafelki są już tylko lekką kontrolą.
-    Większość ćwiczeń wymaga słuchania albo pisania.
-  */
-  const roll=Math.random();
-
-  if(roll<.08){
-    return Math.random()<.5 ? 'es-pl' : 'pl-es';
-  }
-
-  const modes=[
-    'audio-pl',
-    'type-pl',
-    'type-es'
-  ];
-
-  return weightedMode(words,modes);
-}
-
-function record(w,mode,ok,accent=false){
-  const s=S(w);
-  const k=K(w)[mode];
-
-  if(ok){
-    k.r++;
-
-    /*
-      Brak akcentu w hiszpańskim uznajemy za poprawne znaczenie,
-      ale nie dajemy pełnego awansu.
-    */
-    if(accent){
-      s.streak=0;
-      s.due=now()+10*60*1000;
-    }else{
-      s.right++;
-      s.streak++;
-      s.stage=Math.min(5,s.stage+1);
-      s.due=now()+dueDelay(s);
-    }
-  }else{
-    k.w++;
-    s.wrong++;
-    s.streak=0;
-    if(s.stage>1)s.stage--;
-    s.due=now()+2*60*1000;
-  }
-
-  s.last=now();
-  stats[w.id]=s;
-  save();
-  updateStats();
-}
-
-function makeWord(w,text,side){
-  const e=document.createElement('button');
-  e.className='word';
-  e.dataset.id=w.id;
-  e.dataset.side=side;
-  e.textContent=text;
-
-  e.onclick=()=>{
-    if(text===w.es){
-      speak(w.es,'es-ES');
-    }
-    selectMatch(e);
   };
 
-  return e;
-}
+  const pool=LinguaCoreEngine.wordsForLevel(
+    selectedCourse,
+    selectedLevel
+  );
 
-function makeAudio(w){
-  const a=document.createElement('button');
-  a.className='audio';
-  a.textContent='🔊';
-  a.type='button';
-  a.onclick=ev=>{
-    ev.stopPropagation();
-    speak(w.es,'es-ES');
-  };
-  return a;
-}
+  const wrongAnswers=pool
+    .filter(word=>word.id!==currentWord.id)
+    .sort(()=>Math.random()-.5)
+    .slice(0,3)
+    .map(word=>word.pl);
 
-function hideAudioFor(el){
-  const row=el.closest('.esrow');
-  if(!row)return;
-  const a=row.querySelector('.audio');
-  if(a)a.classList.add('done');
-}
+  const answers=[
+    currentWord.pl,
+    ...wrongAnswers
+  ].sort(()=>Math.random()-.5);
 
-function renderMatch(){
-  matchArea.style.display='grid';
-  singleArea.style.display='none';
-  leftCol.innerHTML='';
-  rightCol.innerHTML='';
-  statusEl.textContent='Połącz słowo z tłumaczeniem';
+  answers.forEach(answer=>{
 
-  if(roundMode==='es-pl'){
-    modeEl.textContent='🇪🇸 HISZPAŃSKI → 🇵🇱 POLSKI';
+    const button=document.createElement('button');
 
-    round.forEach(w=>{
-      leftCol.append(
-        makeWord(w,w.es,'left')
-      );
-    });
+    button.type='button';
+    button.className='lesson-choice';
+    button.textContent=answer;
 
-    shuffle(round).forEach(w=>{
-      const row=document.createElement('div');
-      row.className='esrow';
+    button.onclick=()=>{
 
-      row.append(
-        makeWord(w,w.pl,'right'),
-        makeAudio(w)
+      if(currentAnswered){
+        return;
+      }
+
+      currentAnswered=true;
+
+      const correct=
+        answer===currentWord.pl;
+
+      LinguaCoreEngine.recordAnswer(
+        profile.id,
+        selectedCourse,
+        currentWord.id,
+        correct
       );
 
-      rightCol.append(row);
-    });
-
-  }else{
-    modeEl.textContent='🇵🇱 POLSKI → 🇪🇸 HISZPAŃSKI';
-
-    round.forEach(w=>{
-      leftCol.append(
-        makeWord(w,w.pl,'left')
-      );
-    });
-
-    shuffle(round).forEach(w=>{
-      const row=document.createElement('div');
-      row.className='esrow';
-
-      row.append(
-        makeWord(w,w.es,'right'),
-        makeAudio(w)
-      );
-
-      rightCol.append(row);
-    });
-  }
-}
-
-function selectMatch(el){
-  if(el.dataset.solved==='1'||locked)return;
-
-  if(el.dataset.side==='left'){
-    document.querySelectorAll('#leftCol .selected')
-      .forEach(x=>x.classList.remove('selected'));
-    left=el;
-  }else{
-    document.querySelectorAll('#rightCol .selected')
-      .forEach(x=>x.classList.remove('selected'));
-    right=el;
-  }
-
-  el.classList.add('selected');
-
-  if(left&&right)checkMatch();
-}
-
-function checkMatch(){
-  const ok=left.dataset.id===right.dataset.id;
-  const w=WORDS[+left.dataset.id];
-
-  if(ok){
-    record(w,roundMode,true);
-
-    left.classList.remove('selected');
-    right.classList.remove('selected');
-    left.classList.add('good');
-    right.classList.add('good');
-
-    statusEl.textContent='✓ Dobrze';
-
-    const a=left,b=right;
-    locked=true;
-
-    setTimeout(()=>{
-  /*
-    Poprawna para zostaje na ekranie.
-    Kafelki są zielone i nie można użyć ich ponownie,
-    ale przycisk 🔊 pozostaje aktywny.
-  */
-  a.classList.remove('selected');
-  b.classList.remove('selected');
-
-  a.dataset.solved='1';
-  b.dataset.solved='1';
-
-  a.disabled=true;
-  b.disabled=true;
-
-  left=right=null;
-  locked=false;
-  done++;
-
-  updateProgress();
-
-  if(done===ROUND)finishRound();
-},420);
-
-  }else{
-    record(w,roundMode,false);
-
-    left.classList.add('bad');
-    right.classList.add('bad');
-    statusEl.textContent='✕ To słowo wróci szybciej';
-
-    const a=left,b=right;
-    locked=true;
-
-    setTimeout(()=>{
-      a.classList.remove('bad','selected');
-      b.classList.remove('bad','selected');
-      left=right=null;
-      locked=false;
-    },600);
-  }
-}
-
-function distractorsFor(w,count=3){
-  return shuffle(
-    WORDS.slice(0,meta.unlocked).filter(x=>x.id!==w.id)
-  ).slice(0,count);
-}
-
-function renderSingle(){
-  matchArea.style.display='none';
-  singleArea.style.display='block';
-  currentIndex=0;
-  showSingleQuestion();
-}
-
-function showSingleQuestion(){
-  locked=false;
-  typedMistakeRecorded=false;
-
-  giveUpBtn.style.display='none';
-  continueBtn.style.display='none';
-  checkBtn.style.display='block';
-
-  choiceBox.innerHTML='';
-  typeBox.classList.remove('active');
-  revealEl.textContent='';
-  answerEl.value='';
-
-  const w=round[currentIndex];
-
-  if(roundMode==='audio-pl'){
-    modeEl.textContent='🔊 HISZPAŃSKI → WYBIERZ POLSKI';
-    statusEl.textContent='Posłuchaj i wybierz znaczenie';
-    promptEl.textContent='Co słyszysz?';
-    listenBtn.style.display='block';
-
-    listenBtn.onclick=()=>speak(w.es,'es-ES');
-
-    const options=shuffle([w,...distractorsFor(w)]);
-
-    options.forEach(x=>{
-      const b=document.createElement('button');
-      b.className='choice';
-      b.textContent=x.pl;
-      b.onclick=()=>checkChoice(b,x.id===w.id,w);
-      choiceBox.append(b);
-    });
-
-    setTimeout(()=>speak(w.es,'es-ES'),180);
-
-  }else if(roundMode==='type-pl'){
-    modeEl.textContent='🔊 HISZPAŃSKI → ✍️ NAPISZ PO POLSKU';
-    statusEl.textContent='Posłuchaj i wpisz tłumaczenie';
-    promptEl.textContent='Co to znaczy?';
-    listenBtn.style.display='block';
-    listenBtn.onclick=()=>speak(w.es,'es-ES');
-    typeBox.classList.add('active');
-    answerEl.placeholder='Wpisz po polsku';
-    checkBtn.onclick=()=>checkTyped(w,'pl');
-    setTimeout(()=>speak(w.es,'es-ES'),180);
-
-  }else{
-    modeEl.textContent='🔊 POLSKI → ✍️ NAPISZ PO HISZPAŃSKU';
-    statusEl.textContent='Posłuchaj i wpisz hiszpańskie słowo';
-    promptEl.textContent='Jak to będzie po hiszpańsku?';
-    listenBtn.style.display='block';
-    listenBtn.onclick=()=>speak(w.pl,'pl-PL');
-    typeBox.classList.add('active');
-    answerEl.placeholder='Wpisz po hiszpańsku';
-    checkBtn.onclick=()=>checkTyped(w,'es');
-    setTimeout(()=>speak(w.pl,'pl-PL'),180);
-  }
-}
-
-function checkChoice(button,ok,w){
-  if(locked)return;
-  locked=true;
-
-  if(ok){
-    record(w,'audio-pl',true);
-    button.classList.add('good');
-    statusEl.textContent='✓ Dobrze';
-
-    setTimeout(()=>{
-      currentIndex++;
-      done++;
-      updateProgress();
-
-      if(currentIndex>=round.length)finishRound();
-      else showSingleQuestion();
-    },650);
-
-  }else{
-    record(w,'audio-pl',false);
-    button.classList.add('bad');
-    statusEl.textContent='✕ Spróbuj jeszcze raz';
-
-    setTimeout(()=>{
-      button.classList.remove('bad');
-      locked=false;
-    },650);
-  }
-}
-
-function checkTyped(w,lang){
-  if(locked)return;
-
-  const input=answerEl.value;
-  if(!input.trim())return;
-
-  const target=lang==='es'?w.es:w.pl;
-  const result=compareAnswer(input,target,lang);
-  const mode=lang==='es'?'type-es':'type-pl';
-
-  if(result.ok){
-    locked=true;
-
-    record(w,mode,true,result.accent);
-
-    giveUpBtn.style.display='none';
-
-    if(result.accent){
-      statusEl.textContent='✓ Dobrze — zapamiętaj akcent';
-      revealEl.textContent='Poprawna pisownia: '+target;
-    }else{
-      statusEl.textContent='✓ Dobrze';
-      revealEl.textContent='Poprawnie: '+target;
-    }
-
-    if(lang==='es'){
-      speak(w.es,'es-ES');
-    }
-
-    setTimeout(()=>{
-      currentIndex++;
-      done++;
-      typedMistakeRecorded=false;
-      updateProgress();
-
-      if(currentIndex>=round.length){
-        finishRound();
+      if(correct){
+        lessonCorrect++;
+        lessonFeedback.textContent='✅ Dobrze!';
       }else{
-        showSingleQuestion();
-      }
-    },1100);
-
-  }else{
-
-    if(!typedMistakeRecorded){
-      record(w,mode,false);
-      typedMistakeRecorded=true;
-    }
-
-    statusEl.textContent='✕ Źle — spróbuj jeszcze raz';
-    revealEl.textContent='';
-
-    answerEl.value='';
-    answerEl.focus();
-
-    giveUpBtn.style.display='block';
-
-    giveUpBtn.onclick=()=>{
-      locked=true;
-
-      revealEl.textContent='Poprawnie: '+target;
-      statusEl.textContent='Zobacz odpowiedź i spróbuj ją zapamiętać';
-
-      giveUpBtn.style.display='none';
-      checkBtn.style.display='none';
-      continueBtn.style.display='block';
-
-      if(lang==='es'){
-        speak(w.es,'es-ES');
+      lessonWrong++;
+        lessonFeedback.textContent=
+          '❌ Poprawna odpowiedź: '+currentWord.pl;
       }
 
-      continueBtn.onclick=()=>{
-        currentIndex++;
-        done++;
-        typedMistakeRecorded=false;
-        updateProgress();
+      [...lessonChoices.children]
+        .forEach(choice=>{
+          choice.disabled=true;
+        });
 
-        checkBtn.style.display='block';
-        continueBtn.style.display='none';
+      lessonContinue.style.display='block';
 
-        if(currentIndex>=round.length){
-          finishRound();
-        }else{
-          showSingleQuestion();
-        }
-      };
     };
-  }
-}
-function updateProgress(){
-  bar.style.width=(done/ROUND*100)+'%';
-}
 
-function maybeUnlock(){
-  const unlocked=WORDS.slice(0,meta.unlocked);
-  const introduced=unlocked.filter(w=>stats[w.id]).length;
-  const learning=unlocked.filter(
-    w=>stats[w.id]&&S(w).stage<3
-  ).length;
+    lessonChoices.appendChild(button);
 
-  if(
-    introduced>=Math.min(meta.unlocked,10) &&
-    learning<=6 &&
-    meta.unlocked<WORDS.length
-  ){
-    meta.unlocked=Math.min(
-      WORDS.length,
-      meta.unlocked+UNLOCK_BATCH
-    );
-    save();
-    updateStats();
-    return true;
-  }
+  });
 
-  return false;
 }
 
-function finishRound(){
-  locked=false;
-  const unlocked=maybeUnlock();
 
-  statusEl.textContent=unlocked
-    ? '🎉 Runda ukończona • 🔓 nowe słowa odblokowane'
-    : '🎉 Runda ukończona';
+lessonContinue.onclick=()=>{
 
-  if(roundMode!=='es-pl'&&roundMode!=='pl-es'){
-    promptEl.textContent='Gotowe!';
-    listenBtn.style.display='none';
-    choiceBox.innerHTML='';
-    typeBox.classList.remove('active');
+  currentLessonIndex++;
+
+  if(currentLessonIndex<currentLesson.length){
+
+    renderLessonExercise();
+    return;
+
   }
+
+  const profile=getActiveProfile();
+
+  const summary=LinguaCoreEngine.getSummary(
+    profile.id,
+    selectedCourse
+  );
+
+  // Wynik tej konkretnej lekcji wyliczamy z danych zapisanych
+  // przez lesson-engine.js. Dzięki temu UI nie może rozjechać się
+  // z faktycznie zapisanym postępem.
+  const sessionCorrect=Math.max(0,summary.correct-lessonStartSummary.correct);
+  const sessionWrong=Math.max(0,summary.wrong-lessonStartSummary.wrong);
+  const total=sessionCorrect+sessionWrong;
+  const accuracy=total
+    ? Math.round((sessionCorrect/total)*100)
+    : 0;
+
+  summaryCorrect.textContent=sessionCorrect;
+  summaryWrong.textContent=sessionWrong;
+  summaryAccuracy.textContent=accuracy+'%';
+
+  const summaryScore=document.getElementById('summaryScore');
+  summaryScore.textContent='Wynik: '+sessionCorrect+' / '+total;
+
+  showScreen(summaryScreen);
+
+};
+
+  
+document.getElementById('startCourseBtn').onclick=()=>{
+
+  const profile=getActiveProfile();
+
+  if(!profile){
+    alert('Nie znaleziono aktywnego profilu.');
+    return;
+  }
+
+  if(!selectedCourse || !selectedLevel){
+    alert('Nie wybrano kursu lub poziomu.');
+    return;
+  }
+
+  lessonStartSummary=LinguaCoreEngine.getSummary(
+    profile.id,
+    selectedCourse
+  );
+
+  const lesson=LinguaCoreEngine.buildLesson(
+    profile.id,
+    selectedCourse,
+    selectedLevel,
+    5
+  );
+
+  if(!lesson.length){
+    alert('Brak materiału dla wybranego kursu i poziomu.');
+    return;
+  }
+
+  currentLesson=lesson;
+  currentLessonIndex=0;
+lessonCorrect=0;
+lessonWrong=0;
+  showScreen(lessonScreen);
+  renderLessonExercise();
+
+};
+
+
+summaryContinue.onclick=()=>{
+  openCourses();
+};
+
+if(getActiveProfile()){
+
+openCourses();
+
+}else{
+
+openProfileScreen();
+
 }
 
-function render(){
-  round=pickWords();
-  roundMode=chooseMode(round);
-
-  left=right=null;
-  done=0;
-  currentIndex=0;
-  locked=false;
-  bar.style.width='0%';
-
-  if(roundMode==='es-pl'||roundMode==='pl-es'){
-    renderMatch();
-  }else{
-    renderSingle();
-  }
-
-  updateStats();
-}
-
-answerEl.addEventListener('keydown',e=>{
-  if(e.key==='Enter'){
-    e.preventDefault();
-    checkBtn.click();
-  }
-});
-
-nextBtn.onclick=render;
-
-render();
-
+</script>
+<script>
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js');
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
 }
 </script>
+
 </body>
 </html>
