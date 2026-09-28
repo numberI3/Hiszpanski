@@ -186,7 +186,70 @@ Najpierw sprawdzamy profile, kursy i poziomy.
 </p>
 
 </section>
+<!-- LEKCJA -->
 
+<section id="lessonScreen" class="screen">
+
+  <button id="backFromLesson" class="back">
+    ← Kurs
+  </button>
+
+  <div class="lesson-top">
+    <div id="lessonMode" class="lesson-mode">
+      Nauka
+    </div>
+
+    <div id="lessonCounter" class="lesson-counter">
+      1 / 5
+    </div>
+  </div>
+
+  <div class="lesson-progress">
+    <div id="lessonProgressBar" class="lesson-progress-bar"></div>
+  </div>
+
+  <div class="card lesson-card">
+
+    <div id="lessonInstruction" class="subtitle">
+      Wybierz poprawne tłumaczenie
+    </div>
+
+    <div id="lessonPrompt" class="lesson-prompt">
+      word
+    </div>
+
+    <button id="lessonSpeak" class="lesson-speak" type="button">
+      🔊
+    </button>
+
+    <div id="lessonChoices" class="lesson-choices">
+    </div>
+
+    <div id="lessonTyping" class="lesson-typing">
+      <input
+        id="lessonAnswer"
+        type="text"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+        placeholder="Wpisz odpowiedź"
+      >
+
+      <button id="lessonCheck" class="primary" type="button">
+        Sprawdź
+      </button>
+    </div>
+
+    <div id="lessonFeedback" class="lesson-feedback">
+    </div>
+
+    <button id="lessonContinue" class="primary lesson-continue" type="button">
+      Dalej
+    </button>
+
+  </div>
+
+</section>
 </main>
 
 
