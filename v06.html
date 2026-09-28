@@ -250,6 +250,40 @@ Najpierw sprawdzamy profile, kursy i poziomy.
   </div>
 
 </section>
+<section id="summaryScreen" class="screen">
+
+  <div class="lesson-summary">
+
+    <div class="summary-icon">🎉</div>
+
+    <h2>Lekcja ukończona!</h2>
+
+    <p id="summaryScore"></p>
+
+    <div class="summary-stats">
+      <div>
+        <strong id="summaryCorrect">0</strong>
+        <span>Poprawne</span>
+      </div>
+
+      <div>
+        <strong id="summaryWrong">0</strong>
+        <span>Błędne</span>
+      </div>
+
+      <div>
+        <strong id="summaryAccuracy">0%</strong>
+        <span>Skuteczność</span>
+      </div>
+    </div>
+
+    <button id="summaryContinue" class="primary">
+      Wróć do kursu
+    </button>
+
+  </div>
+
+</section>
 </main>
 
 
@@ -262,7 +296,11 @@ const courseScreen=document.getElementById('courseScreen');
 const levelScreen=document.getElementById('levelScreen');
 const readyScreen=document.getElementById('readyScreen');
 const lessonScreen=document.getElementById('lessonScreen');
-
+const summaryScreen=document.getElementById('summaryScreen');
+const summaryCorrect=document.getElementById('summaryCorrect');
+const summaryWrong=document.getElementById('summaryWrong');
+const summaryAccuracy=document.getElementById('summaryAccuracy');
+const summaryContinue=document.getElementById('summaryContinue');
 const lessonMode=document.getElementById('lessonMode');
 const lessonCounter=document.getElementById('lessonCounter');
 const lessonProgressBar=document.getElementById('lessonProgressBar');
@@ -298,7 +336,8 @@ let currentLessonIndex=0;
 let currentWord=null;
 let currentExerciseType=null;
 let currentAnswered=false;
-
+let lessonCorrect=0;
+let lessonWrong=0;
 function showScreen(screen){
 
 [
@@ -642,8 +681,10 @@ function renderLessonExercise(){
       );
 
       if(correct){
+        lessonCorrect++;
         lessonFeedback.textContent='✅ Dobrze!';
       }else{
+      lessonWrong++;
         lessonFeedback.textContent=
           '❌ Poprawna odpowiedź: '+currentWord.pl;
       }
@@ -682,13 +723,19 @@ lessonContinue.onclick=()=>{
     selectedCourse
   );
 
-  alert(
-    'Lekcja ukończona! 🎉\n\n' +
-    'Poprawne odpowiedzi: '+summary.correct+'\n' +
-    'Błędne odpowiedzi: '+summary.wrong
-  );
 
-  openCourses();
+
+summaryCorrect.textContent=lessonCorrect;
+summaryWrong.textContent=lessonWrong;
+
+const total=lessonCorrect+lessonWrong;
+const accuracy=total
+  ? Math.round((lessonCorrect/total)*100)
+  : 0;
+
+summaryAccuracy.textContent=accuracy+'%';
+
+showScreen(summaryScreen);
 
 };
 
@@ -721,7 +768,8 @@ document.getElementById('startCourseBtn').onclick=()=>{
 
   currentLesson=lesson;
   currentLessonIndex=0;
-
+lessonCorrect=0;
+lessonWrong=0;
   showScreen(lessonScreen);
   renderLessonExercise();
 
