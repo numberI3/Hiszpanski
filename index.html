@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827">
 
-<title>LinguaCore 0.7</title>
+<title>LinguaCore 0.7.1</title>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -18,7 +18,7 @@
 <h1>🌍 LinguaCore</h1>
 <p>
 Ucz się języka po swojemu
-<span class="version">v0.7</span>
+<span class="version">v0.7.1</span>
 </p>
 </header>
 
@@ -312,6 +312,7 @@ const lessonAnswer=document.getElementById('lessonAnswer');
 const lessonCheck=document.getElementById('lessonCheck');
 const lessonFeedback=document.getElementById('lessonFeedback');
 const lessonContinue=document.getElementById('lessonContinue');
+const backFromLesson=document.getElementById('backFromLesson');
 const profileName=document.getElementById('profileName');
 const createProfileBtn=document.getElementById('createProfileBtn');
 const existingProfiles=document.getElementById('existingProfiles');
@@ -581,6 +582,21 @@ document.getElementById('backToLevels').onclick=()=>{
 openLevels(selectedCourse);
 };
 
+
+backFromLesson.onclick=()=>{
+  currentLesson=[];
+  currentLessonIndex=0;
+  currentWord=null;
+  currentAnswered=false;
+  lessonCorrect=0;
+  lessonWrong=0;
+
+  if(selectedCourse){
+    openLevels(selectedCourse);
+  }else{
+    openCourses();
+  }
+};
 
 placementBtn.onclick=()=>{
 
