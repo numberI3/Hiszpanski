@@ -7,3 +7,31 @@
 .level-progress{height:10px;background:#e5e7eb;border-radius:99px;margin-top:14px;overflow:hidden}
 .level-progress>div{height:100%;width:0;background:#4f86ef;border-radius:99px}
 .progress-caption{text-align:center;color:#6b7280;font-size:14px;margin-top:8px}
+
+/* ===== v0.9 RETRO SKIN ===== */
+:root{--ink:#111827;--blue:#356ae6;--pixel:#182033;--paper:#f4f2ea;--shadow:#c8ccd6}
+body{background:
+linear-gradient(rgba(17,24,39,.025) 1px,transparent 1px),
+linear-gradient(90deg,rgba(17,24,39,.025) 1px,transparent 1px),#f6f7fb;background-size:8px 8px}
+.brand-line{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.sound-toggle{width:54px;height:48px;border:3px solid var(--ink);border-radius:10px;background:#fff;box-shadow:4px 4px 0 var(--ink);font-size:23px}
+.sound-toggle:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.retro-status{display:inline-block;margin-top:10px;padding:5px 9px;background:var(--ink);color:#9cff57;border-radius:3px;font:700 11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.8px}
+.retro-status span{color:#7dd3fc}
+.action-card,.level,.secondary,.lesson-choice,.lesson-speak,.profile-chip,.card,.lesson-summary{
+ border-color:var(--ink);border-radius:14px;box-shadow:6px 6px 0 var(--shadow);transition:transform .06s ease,box-shadow .06s ease
+}
+.action-card:active,.level:active,.secondary:active,.lesson-choice:active,.lesson-speak:active{
+ transform:translate(4px,4px);box-shadow:2px 2px 0 var(--shadow)
+}
+.primary{border-radius:10px;border:3px solid #050914;box-shadow:5px 5px 0 #9ca3af;text-transform:uppercase;letter-spacing:.5px}
+.primary:active{transform:translate(4px,4px);box-shadow:1px 1px 0 #9ca3af}
+.course-card .flag{filter:saturate(.9)}
+.card-name,.profile-name,.title{letter-spacing:-.5px}
+.arrow{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:900;color:var(--ink)}
+.lesson-progress,.level-progress{border:2px solid var(--ink);height:14px;background:#fff}
+.lesson-progress-bar,.level-progress>div{background:repeating-linear-gradient(90deg,#356ae6 0,#356ae6 8px,#5d8cf0 8px,#5d8cf0 12px)}
+.lesson-feedback{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.summary-icon{filter:saturate(.8)}
+.progress-panel,.summary-stats div{border:2px solid #d1d5db;border-radius:8px}
+@media(max-width:520px){.sound-toggle{width:50px;height:44px}.retro-status{font-size:10px}}

@@ -1,7 +1,7 @@
-/* LinguaCore v0.8.0 */
-const APP={name:'LinguaCore',version:'0.8.1',languages:{
+/* LinguaCore v0.9.0 */
+const APP={name:'LinguaCore',version:'0.9.0',languages:{
  english:{id:'english',name:'English',flag:'🇬🇧',speechLanguage:'en-GB',levels:['A1','A2','B1','B2']},
- spanish:{id:'spanish',name:'Español',flag:'🇪🇸',speechLanguage:'es-ES',levels:['A1']}
+ spanish:{id:'spanish',name:'Español',flag:'🇪🇸',speechLanguage:'es-ES',levels:['A1','A2','B1','B2']}
 }};
 const STORAGE={profiles:'linguacoreProfilesV1',activeProfile:'linguacoreActiveProfileV1'};
 function loadProfiles(){try{return JSON.parse(localStorage.getItem(STORAGE.profiles)||'{}')}catch{return {}}}
