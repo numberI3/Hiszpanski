@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827">
 
-<title>LinguaCore 0.7.1</title>
+<title>LinguaCore 0.7.2</title>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -18,7 +18,7 @@
 <h1>🌍 LinguaCore</h1>
 <p>
 Ucz się języka po swojemu
-<span class="version">v0.7.1</span>
+<span class="version">v0.7.2</span>
 </p>
 </header>
 
@@ -276,7 +276,11 @@ Lekcja zawiera 5 pytań. Wynik zostanie pokazany po jej ukończeniu.
       </div>
     </div>
 
-    <button id="summaryContinue" class="primary">
+    <button id="summaryNext" class="primary">
+      Następna runda
+    </button>
+
+    <button id="summaryContinue" class="secondary" style="margin-top:12px;width:100%">
       Wróć do kursu
     </button>
 
@@ -300,6 +304,7 @@ const summaryCorrect=document.getElementById('summaryCorrect');
 const summaryWrong=document.getElementById('summaryWrong');
 const summaryAccuracy=document.getElementById('summaryAccuracy');
 const summaryContinue=document.getElementById('summaryContinue');
+const summaryNext=document.getElementById('summaryNext');
 const lessonMode=document.getElementById('lessonMode');
 const lessonCounter=document.getElementById('lessonCounter');
 const lessonProgressBar=document.getElementById('lessonProgressBar');
@@ -798,8 +803,48 @@ lessonWrong=0;
 };
 
 
+summaryNext.onclick=()=>{
+  const profile=getActiveProfile();
+
+  if(!profile || !selectedCourse || !selectedLevel){
+    openCourses();
+    return;
+  }
+
+  lessonStartSummary=LinguaCoreEngine.getSummary(
+    profile.id,
+    selectedCourse
+  );
+
+  const lesson=LinguaCoreEngine.buildLesson(
+    profile.id,
+    selectedCourse,
+    selectedLevel,
+    5
+  );
+
+  if(!lesson.length){
+    alert('Brak materiału dla wybranego kursu i poziomu.');
+    return;
+  }
+
+  currentLesson=lesson;
+  currentLessonIndex=0;
+  currentWord=null;
+  currentAnswered=false;
+  lessonCorrect=0;
+  lessonWrong=0;
+
+  showScreen(lessonScreen);
+  renderLessonExercise();
+};
+
 summaryContinue.onclick=()=>{
-  openCourses();
+  if(selectedCourse){
+    openLevels(selectedCourse);
+  }else{
+    openCourses();
+  }
 };
 
 if(getActiveProfile()){
