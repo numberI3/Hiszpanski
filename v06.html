@@ -254,14 +254,27 @@ Najpierw sprawdzamy profile, kursy i poziomy.
 
 
 <script src="app.js"></script>
-
+<script src="lesson-engine.js"></script>
 <script>
 
 const profileScreen=document.getElementById('profileScreen');
 const courseScreen=document.getElementById('courseScreen');
 const levelScreen=document.getElementById('levelScreen');
 const readyScreen=document.getElementById('readyScreen');
+const lessonScreen=document.getElementById('lessonScreen');
 
+const lessonMode=document.getElementById('lessonMode');
+const lessonCounter=document.getElementById('lessonCounter');
+const lessonProgressBar=document.getElementById('lessonProgressBar');
+const lessonInstruction=document.getElementById('lessonInstruction');
+const lessonPrompt=document.getElementById('lessonPrompt');
+const lessonSpeak=document.getElementById('lessonSpeak');
+const lessonChoices=document.getElementById('lessonChoices');
+const lessonTyping=document.getElementById('lessonTyping');
+const lessonAnswer=document.getElementById('lessonAnswer');
+const lessonCheck=document.getElementById('lessonCheck');
+const lessonFeedback=document.getElementById('lessonFeedback');
+const lessonContinue=document.getElementById('lessonContinue');
 const profileName=document.getElementById('profileName');
 const createProfileBtn=document.getElementById('createProfileBtn');
 const existingProfiles=document.getElementById('existingProfiles');
@@ -280,7 +293,11 @@ const readyLevel=document.getElementById('readyLevel');
 
 let selectedCourse=null;
 let selectedLevel=null;
-
+let currentLesson=[];
+let currentLessonIndex=0;
+let currentWord=null;
+let currentExerciseType=null;
+let currentAnswered=false;
 
 function showScreen(screen){
 
@@ -288,7 +305,8 @@ function showScreen(screen){
 profileScreen,
 courseScreen,
 levelScreen,
-readyScreen
+readyScreen,
+lessonScreen
 ].forEach(s=>s.classList.remove('active'));
 
 screen.classList.add('active');
@@ -532,7 +550,149 @@ alert(
 
 };
 
+function renderLessonExercise(){
 
+  currentWord=currentLesson[currentLessonIndex];
+
+  if(!currentWord){
+    return;
+  }
+
+  currentAnswered=false;
+
+  const profile=getActiveProfile();
+
+  const progress=LinguaCoreEngine.getSummary(
+    profile.id,
+    selectedCourse
+  );
+
+  currentExerciseType='recognition';
+
+  lessonCounter.textContent=
+    (currentLessonIndex+1)+' / '+currentLesson.length;
+
+  lessonProgressBar.style.width=
+    (((currentLessonIndex+1)/currentLesson.length)*100)+'%';
+
+  lessonMode.textContent='Nauka';
+
+  lessonInstruction.textContent=
+    'Wybierz poprawne tłumaczenie';
+
+  lessonPrompt.textContent=currentWord.target;
+
+  lessonFeedback.textContent='';
+
+  lessonContinue.style.display='none';
+  lessonTyping.style.display='none';
+  lessonChoices.style.display='grid';
+
+  lessonChoices.innerHTML='';
+
+  lessonSpeak.style.display='inline-flex';
+
+  lessonSpeak.onclick=()=>{
+    LinguaCoreEngine.speak(
+      currentWord.target,
+      selectedCourse
+    );
+  };
+
+  const pool=LinguaCoreEngine.wordsForLevel(
+    selectedCourse,
+    selectedLevel
+  );
+
+  const wrongAnswers=pool
+    .filter(word=>word.id!==currentWord.id)
+    .sort(()=>Math.random()-.5)
+    .slice(0,3)
+    .map(word=>word.pl);
+
+  const answers=[
+    currentWord.pl,
+    ...wrongAnswers
+  ].sort(()=>Math.random()-.5);
+
+  answers.forEach(answer=>{
+
+    const button=document.createElement('button');
+
+    button.type='button';
+    button.className='lesson-choice';
+    button.textContent=answer;
+
+    button.onclick=()=>{
+
+      if(currentAnswered){
+        return;
+      }
+
+      currentAnswered=true;
+
+      const correct=
+        answer===currentWord.pl;
+
+      LinguaCoreEngine.recordAnswer(
+        profile.id,
+        selectedCourse,
+        currentWord.id,
+        correct
+      );
+
+      if(correct){
+        lessonFeedback.textContent='✅ Dobrze!';
+      }else{
+        lessonFeedback.textContent=
+          '❌ Poprawna odpowiedź: '+currentWord.pl;
+      }
+
+      [...lessonChoices.children]
+        .forEach(choice=>{
+          choice.disabled=true;
+        });
+
+      lessonContinue.style.display='block';
+
+    };
+
+    lessonChoices.appendChild(button);
+
+  });
+
+}
+
+
+lessonContinue.onclick=()=>{
+
+  currentLessonIndex++;
+
+  if(currentLessonIndex<currentLesson.length){
+
+    renderLessonExercise();
+    return;
+
+  }
+
+  const profile=getActiveProfile();
+
+  const summary=LinguaCoreEngine.getSummary(
+    profile.id,
+    selectedCourse
+  );
+
+  alert(
+    'Lekcja ukończona! 🎉\n\n' +
+    'Poprawne odpowiedzi: '+summary.correct+'\n' +
+    'Błędne odpowiedzi: '+summary.wrong
+  );
+
+  openCourses();
+
+};
+
+  
 document.getElementById('startCourseBtn').onclick=()=>{
 
   const profile=getActiveProfile();
@@ -554,17 +714,16 @@ document.getElementById('startCourseBtn').onclick=()=>{
     5
   );
 
-  console.log('LinguaCore lesson:',lesson);
-
   if(!lesson.length){
     alert('Brak materiału dla wybranego kursu i poziomu.');
     return;
   }
 
-  alert(
-    'Lekcja gotowa!\n\n' +
-    lesson.map(word=>word.target+' — '+word.pl).join('\n')
-  );
+  currentLesson=lesson;
+  currentLessonIndex=0;
+
+  showScreen(lessonScreen);
+  renderLessonExercise();
 
 };
 
@@ -580,6 +739,6 @@ openProfileScreen();
 }
 
 </script>
-<script src="lesson-engine.js"></script>
+
 </body>
 </html>
