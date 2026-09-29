@@ -444,3 +444,45 @@ body[data-screen="lessonScreen"] .brand{display:none}
   body[data-screen="lessonScreen"] .lesson-feedback{height:24px;min-height:24px;font-size:13px}
   body[data-screen="lessonScreen"] .lesson-continue{height:40px;min-height:40px!important;flex-basis:40px}
 }
+
+/* ===== v0.10.3 — KEEP FEEDBACK + DALEJ INSIDE THE CARD ===== */
+@media(max-width:520px){
+  body[data-screen="lessonScreen"] .lesson-card{
+    padding-bottom:8px!important;
+  }
+
+  /* Once an answer has been given, reclaim a little height from the four answers. */
+  body[data-screen="lessonScreen"] .lesson-choices:has(.lesson-choice[data-result]){
+    gap:5px!important;
+    padding-top:5px!important;
+  }
+  body[data-screen="lessonScreen"] .lesson-choices:has(.lesson-choice[data-result]) .lesson-choice{
+    min-height:46px!important;
+    padding:5px 8px!important;
+  }
+
+  body[data-screen="lessonScreen"] .lesson-feedback{
+    flex:0 0 26px!important;
+    height:26px!important;
+    min-height:26px!important;
+    margin:2px 0!important;
+  }
+
+  body[data-screen="lessonScreen"] .lesson-continue{
+    display:block!important;
+    flex:0 0 42px!important;
+    width:100%!important;
+    height:42px!important;
+    min-height:42px!important;
+    margin:2px 0 0!important;
+    padding:6px 10px!important;
+  }
+  body[data-screen="lessonScreen"] .lesson-continue:not(.is-visible){
+    visibility:hidden!important;
+    pointer-events:none!important;
+  }
+  body[data-screen="lessonScreen"] .lesson-continue.is-visible{
+    visibility:visible!important;
+    pointer-events:auto!important;
+  }
+}
