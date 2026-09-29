@@ -299,3 +299,59 @@ body[data-screen="lessonScreen"] .brand{display:none}
  body[data-screen="lessonScreen"] .lesson-input{min-height:48px;font-size:17px}
  body[data-screen="lessonScreen"] #lessonCheck{min-height:44px;padding:8px 10px}
 }
+
+/* ===== v0.10.1 FEEDBACK + SPEAKER + THUMB-ZONE POLISH ===== */
+.lesson-choice.choice-dimmed,
+.lesson-choice.choice-dimmed:disabled{
+  background:#e9ebef;
+  border-color:#8d95a3;
+  color:#3f4652;
+  opacity:1;
+  box-shadow:2px 2px 0 #b9bec8;
+}
+.lesson-choice.choice-selected,
+.lesson-choice.choice-selected:disabled{
+  transform:translate(3px,3px);
+  box-shadow:1px 1px 0 #aeb4bf;
+  opacity:1;
+  color:#111827;
+}
+.lesson-choice.choice-correct,
+.lesson-choice.choice-correct:disabled{
+  background:#dff3df;
+  border-color:#2d7040;
+  color:#102a18;
+  opacity:1;
+}
+.lesson-choice.choice-wrong,
+.lesson-choice.choice-wrong:disabled{
+  background:#f1dddd;
+  border-color:#8b4545;
+  color:#3d1717;
+  opacity:1;
+}
+.lesson-choice.choice-correct::after{content:"  ✓";font-weight:900}
+.lesson-choice.choice-wrong::after{content:"  ✕";font-weight:900}
+
+@media(max-width:520px){
+  body[data-screen="lessonScreen"] .lesson-card{
+    max-height:calc(100dvh - 245px);
+    margin-bottom:calc(18px + env(safe-area-inset-bottom));
+  }
+  body[data-screen="lessonScreen"] .lesson-speak{
+    width:58px;
+    min-width:58px;
+    height:48px;
+    min-height:48px;
+    padding:4px;
+    font-size:25px;
+    line-height:1;
+    align-self:center;
+  }
+}
+@media(max-height:760px) and (max-width:520px){
+  body[data-screen="lessonScreen"] .lesson-card{
+    max-height:calc(100dvh - 215px);
+    margin-bottom:calc(10px + env(safe-area-inset-bottom));
+  }
+}
