@@ -486,3 +486,50 @@ body[data-screen="lessonScreen"] .brand{display:none}
     pointer-events:auto!important;
   }
 }
+
+/* ===== v0.11.0 HOME MASCOT + GLOBAL VOCAB COUNTER ===== */
+.mascot-zone{
+  margin-top:20px; min-height:185px; display:flex; align-items:flex-end; justify-content:center;
+  gap:20px; position:relative; overflow:hidden; padding:4px 8px 2px;
+}
+.vocab-sign{
+  border:3px solid var(--ink); background:#fff7d6; box-shadow:4px 4px 0 var(--shadow);
+  padding:8px 10px; min-width:92px; text-align:center; transform:rotate(-1deg);
+  font-family:var(--retro-font);
+}
+.vocab-sign span,.vocab-sign small{display:block;font-size:10px;font-weight:900;letter-spacing:.5px}
+.vocab-sign strong{display:block;font-size:27px;line-height:1.05;margin:3px 0;color:#234fbd}
+.pixel-stage{position:relative;width:150px;height:170px;display:flex;align-items:flex-end;justify-content:center}
+.mascot-bubble{
+  position:absolute;right:0;top:4px;max-width:128px;background:#fff;border:3px solid var(--ink);
+  box-shadow:3px 3px 0 var(--shadow);padding:7px 9px;font:900 12px var(--retro-font);
+  text-align:center;z-index:4;
+}
+.mascot-bubble:after{content:"";position:absolute;left:22px;bottom:-10px;width:10px;height:10px;background:#fff;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(45deg)}
+.bubble-pop{animation:bubblePop .28s steps(2,end)}
+.pixel-person{position:absolute;bottom:22px;left:54px;width:46px;height:92px;animation:pixelWalk .55s steps(2,end) infinite}
+.px-head{position:absolute;left:10px;top:12px;width:28px;height:27px;background:#f2b27c;border:3px solid var(--ink)}
+.px-hair{position:absolute;left:7px;top:6px;width:34px;height:14px;background:#5a351f;border:3px solid var(--ink);z-index:2}
+.px-body{position:absolute;left:8px;top:40px;width:32px;height:31px;background:#4c80e8;border:3px solid var(--ink)}
+.px-arm{position:absolute;top:44px;width:9px;height:28px;background:#f2b27c;border:3px solid var(--ink);transform-origin:top center}
+.px-arm-l{left:0;animation:armL .55s steps(2,end) infinite}.px-arm-r{right:-1px;animation:armR .55s steps(2,end) infinite}
+.px-leg{position:absolute;top:70px;width:11px;height:25px;background:#334155;border:3px solid var(--ink);transform-origin:top center}
+.px-leg-l{left:8px;animation:legL .55s steps(2,end) infinite}.px-leg-r{right:6px;animation:legR .55s steps(2,end) infinite}
+.pixel-ground{position:absolute;bottom:2px;left:8px;right:8px;text-align:center;color:#6c8b4b;font:900 16px var(--retro-font);letter-spacing:5px}
+@keyframes pixelWalk{0%{transform:translateY(0)}100%{transform:translateY(-3px)}}
+@keyframes armL{0%{transform:rotate(18deg)}100%{transform:rotate(-18deg)}} @keyframes armR{0%{transform:rotate(-18deg)}100%{transform:rotate(18deg)}}
+@keyframes legL{0%{transform:rotate(12deg)}100%{transform:rotate(-12deg)}} @keyframes legR{0%{transform:rotate(-12deg)}100%{transform:rotate(12deg)}}
+@keyframes bubblePop{0%{transform:scale(.92)}100%{transform:scale(1)}}
+@media(max-width:520px){
+ body[data-screen="courseScreen"] .mascot-zone{margin-top:12px;min-height:150px;gap:14px}
+ body[data-screen="courseScreen"] .pixel-stage{height:145px;width:140px}
+ body[data-screen="courseScreen"] .pixel-person{transform-origin:bottom center;left:50px}
+ body[data-screen="courseScreen"] .vocab-sign{margin-bottom:18px}
+}
+@media(max-height:760px) and (max-width:520px){
+ body[data-screen="courseScreen"] .mascot-zone{min-height:120px;margin-top:6px}
+ body[data-screen="courseScreen"] .pixel-stage{height:118px}
+ body[data-screen="courseScreen"] .pixel-person{bottom:12px;transform:scale(.82)}
+ body[data-screen="courseScreen"] .mascot-bubble{top:0;font-size:10px;padding:5px 7px}
+ body[data-screen="courseScreen"] .vocab-sign{transform:scale(.9);margin-bottom:8px}
+}

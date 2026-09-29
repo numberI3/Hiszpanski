@@ -1,4 +1,4 @@
-/* LinguaCore v0.10.0 — adaptive multi-exercise lesson engine */
+/* LinguaCore v0.11.0 — adaptive multi-exercise lesson engine */
 const LinguaCoreEngine=(()=>{
  const MODES=['recognition','reverse','listening','typing'];
  const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -71,5 +71,21 @@ const LinguaCoreEngine=(()=>{
    return {todayCorrect:day.correct||0,todayWrong:day.wrong||0,seen,mastered,review,total:pool.length};
  }
  function speak(text,courseId){if(!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=APP.languages[courseId]?.speechLanguage||'en-GB';u.rate=.88;speechSynthesis.speak(u)}
- return {MODES,wordsForLevel,buildLesson,recordAnswer,getSummary,getProgress,speak};
+ function getGlobalProgress(profileId){
+   const profiles=loadProfiles(),p=profiles[profileId];
+   if(!p)return {mastered:0,seen:0,total:0,byCourse:{}};
+   let mastered=0,seen=0,total=0; const byCourse={};
+   Object.keys(APP.languages).forEach(courseId=>{
+     const c=getCourse(p,courseId),skills=c.skills||{},items=COURSE_DATA[courseId]||[];
+     let cm=0,cs=0;
+     items.forEach(w=>{
+       const x=skills[w.id],attempts=(x?.correct||0)+(x?.wrong||0);
+       if(attempts>0){seen++;cs++}
+       if(isMastered(x)){mastered++;cm++}
+     });
+     total+=items.length;byCourse[courseId]={mastered:cm,seen:cs,total:items.length};
+   });
+   return {mastered,seen,total,byCourse};
+ }
+ return {MODES,wordsForLevel,buildLesson,recordAnswer,getSummary,getProgress,getGlobalProgress,speak};
 })();
