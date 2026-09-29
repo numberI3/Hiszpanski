@@ -288,3 +288,14 @@ body[data-screen="lessonScreen"] .brand{display:none}
   body[data-screen="summaryScreen"] .primary,
   body[data-screen="summaryScreen"] .secondary{min-height:42px;padding:8px;margin-top:5px;font-size:14px}
 }
+
+/* ===== v0.10.0 ADAPTIVE EXERCISES ===== */
+.lesson-typing{width:100%;gap:8px;margin-top:auto;padding-top:12px}
+.lesson-input{box-sizing:border-box;width:100%;min-height:52px;border:3px solid var(--ink);border-radius:10px;background:#fff;color:#111827;padding:10px 12px;font:800 18px var(--retro-font);outline:none;box-shadow:3px 3px 0 var(--shadow)}
+.lesson-input:focus{border-color:#356ae6}
+.listening-prompt{font-size:38px!important}
+@media(max-width:520px){
+ body[data-screen="lessonScreen"] .lesson-typing{margin-top:auto;padding-top:10px}
+ body[data-screen="lessonScreen"] .lesson-input{min-height:48px;font-size:17px}
+ body[data-screen="lessonScreen"] #lessonCheck{min-height:44px;padding:8px 10px}
+}
