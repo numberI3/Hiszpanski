@@ -355,3 +355,92 @@ body[data-screen="lessonScreen"] .brand{display:none}
     margin-bottom:calc(10px + env(safe-area-inset-bottom));
   }
 }
+
+/* ===== v0.10.2 STABLE ANSWER STATE ===== */
+.lesson-choice[data-result="dimmed"],
+.lesson-choice[data-result="dimmed"]:disabled{
+  background:#e5e7eb!important;
+  border-color:#7d8490!important;
+  color:#303641!important;
+  opacity:1!important;
+  box-shadow:2px 2px 0 #b8bdc6!important;
+}
+.lesson-choice[data-result="correct"],
+.lesson-choice[data-result="correct"]:disabled{
+  background:#d8f0dc!important;
+  border-color:#2f7542!important;
+  color:#102b18!important;
+  opacity:1!important;
+}
+.lesson-choice[data-result="wrong"],
+.lesson-choice[data-result="wrong"]:disabled{
+  background:#efdada!important;
+  border-color:#934848!important;
+  color:#401919!important;
+  opacity:1!important;
+}
+.lesson-choice[data-selected="true"],
+.lesson-choice[data-selected="true"]:disabled{
+  transform:translate(3px,3px)!important;
+  box-shadow:1px 1px 0 #aeb4bf!important;
+}
+.lesson-choice[data-result="correct"]::after{content:"  ✓";font-weight:900}
+.lesson-choice[data-result="wrong"]::after{content:"  ✕";font-weight:900}
+
+/* Feedback and Dalej always own their space; they no longer grow the card after answering. */
+.lesson-feedback{
+  box-sizing:border-box;
+  min-height:30px;
+  height:30px;
+  margin:4px 0 2px!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  visibility:hidden;
+  font-weight:800;
+}
+.lesson-feedback.is-visible{visibility:visible}
+.lesson-continue{
+  box-sizing:border-box;
+  min-height:46px!important;
+  height:46px;
+  margin:2px 0 0!important;
+  visibility:hidden;
+  flex:0 0 46px;
+}
+.lesson-continue.is-visible{visibility:visible}
+
+@media(max-width:520px){
+  body[data-screen="lessonScreen"] .lesson-card{
+    box-sizing:border-box;
+    height:100%;
+    max-height:none!important;
+    margin:0 0 calc(8px + env(safe-area-inset-bottom))!important;
+    padding:12px 14px 10px!important;
+    overflow:hidden;
+  }
+  body[data-screen="lessonScreen"] .lesson-choices{
+    gap:7px!important;
+    padding-top:8px!important;
+  }
+  body[data-screen="lessonScreen"] .lesson-choice{
+    min-height:54px!important;
+    padding:8px 10px!important;
+  }
+  body[data-screen="lessonScreen"] .lesson-feedback{
+    min-height:28px;
+    height:28px;
+    margin:3px 0 1px!important;
+  }
+  body[data-screen="lessonScreen"] .lesson-continue{
+    min-height:44px!important;
+    height:44px;
+    flex-basis:44px;
+  }
+}
+@media(max-width:390px), (max-height:760px){
+  body[data-screen="lessonScreen"] .lesson-card{padding:9px 11px 8px!important}
+  body[data-screen="lessonScreen"] .lesson-choice{min-height:48px!important;padding:6px 8px!important}
+  body[data-screen="lessonScreen"] .lesson-feedback{height:24px;min-height:24px;font-size:13px}
+  body[data-screen="lessonScreen"] .lesson-continue{height:40px;min-height:40px!important;flex-basis:40px}
+}
