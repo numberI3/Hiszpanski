@@ -35,3 +35,62 @@ linear-gradient(90deg,rgba(17,24,39,.025) 1px,transparent 1px),#f6f7fb;backgroun
 .summary-icon{filter:saturate(.8)}
 .progress-panel,.summary-stats div{border:2px solid #d1d5db;border-radius:8px}
 @media(max-width:520px){.sound-toggle{width:50px;height:44px}.retro-status{font-size:10px}}
+
+
+/* ===== v0.9.1 iPHONE COMPACT + RETRO TYPE ===== */
+:root{
+  --retro-font: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+.brand h1,.title,.card-name,.profile-name,.level,.primary,.secondary,.lesson-choice,
+.lesson-prompt,.lesson-top,.back,.change-profile,.lesson-summary h2,.progress-panel h3{
+  font-family:var(--retro-font);
+  font-weight:900;
+}
+.brand h1{letter-spacing:-2px}
+.card-name,.profile-name,.title{letter-spacing:-1px}
+.lesson-choice{color:#111827;opacity:1}
+.lesson-choice:disabled{color:#111827;opacity:1;-webkit-text-fill-color:#111827}
+body[data-screen="lessonScreen"] .brand{display:none}
+
+@media(max-width:520px){
+  html,body{min-height:100%;overscroll-behavior-y:none}
+  .app{min-height:100dvh;padding:18px 18px calc(18px + env(safe-area-inset-bottom))}
+  .brand h1{font-size:31px;margin:0;line-height:1.05}
+  .brand p{font-size:15px;margin:8px 0 0}
+  .brand-line{gap:10px}
+  .sound-toggle{width:46px;height:42px;font-size:20px;box-shadow:3px 3px 0 var(--ink)}
+  .screen{margin-top:20px}
+  #courseScreen{margin-top:18px}
+  .profile-chip{padding:12px 14px;margin:0 0 16px}
+  .profile-chip small{font-size:11px}
+  .profile-name{font-size:17px}
+  .change-profile{font-size:16px}
+  #courseScreen .title{font-size:23px;line-height:1.15;margin-bottom:5px}
+  #courseScreen .subtitle{font-size:14px;margin:0 0 12px}
+  .action-card{padding:13px 14px;margin:10px 0}
+  .course-card .flag{font-size:29px}
+  .card-row{gap:12px}
+  .card-name{font-size:19px}
+  .card-info{font-size:13px}
+  .arrow{font-size:28px}
+
+  body[data-screen="lessonScreen"] .app{padding-top:10px}
+  #lessonScreen{margin-top:0}
+  #lessonScreen .back{font-size:16px;padding:6px 0}
+  .lesson-top{font-size:14px;margin-top:2px}
+  .lesson-progress{height:10px;margin:8px 0 10px}
+  .lesson-card{padding:12px 12px 14px;margin:8px 0;box-shadow:4px 4px 0 var(--shadow)}
+  .lesson-card>.subtitle{font-size:13px;margin:0}
+  .lesson-prompt{font-size:32px;line-height:1;margin:12px 0 8px}
+  .lesson-speak{font-size:22px;padding:8px 11px;border-radius:10px;box-shadow:3px 3px 0 var(--shadow)}
+  .lesson-choices{gap:8px;margin-top:12px}
+  .lesson-choice{padding:12px 10px;min-height:48px;border-radius:10px;font-size:17px;box-shadow:3px 3px 0 var(--shadow)}
+  .lesson-feedback{font-size:14px;margin:10px 0}
+  .lesson-continue{padding:12px;font-size:16px;box-shadow:3px 3px 0 #9ca3af}
+}
+@media(max-width:390px){
+  .brand h1{font-size:28px}
+  #courseScreen .title{font-size:21px}
+  .action-card{padding:11px 12px}
+  .lesson-choice{min-height:44px;padding:10px 8px}
+}

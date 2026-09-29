@@ -1,5 +1,5 @@
-/* LinguaCore v0.9.0 */
-const APP={name:'LinguaCore',version:'0.9.0',languages:{
+/* LinguaCore v0.9.1 */
+const APP={name:'LinguaCore',version:'0.9.1',languages:{
  english:{id:'english',name:'English',flag:'🇬🇧',speechLanguage:'en-GB',levels:['A1','A2','B1','B2']},
  spanish:{id:'spanish',name:'Español',flag:'🇪🇸',speechLanguage:'es-ES',levels:['A1','A2','B1','B2']}
 }};
