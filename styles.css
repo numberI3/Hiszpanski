@@ -94,3 +94,197 @@ body[data-screen="lessonScreen"] .brand{display:none}
   .action-card{padding:11px 12px}
   .lesson-choice{min-height:44px;padding:10px 8px}
 }
+
+
+/* ===== v0.9.2 THUMB-ZONE LESSON LAYOUT ===== */
+.lesson-pixel-scene{display:none}
+
+@media(max-width:520px){
+  body[data-screen="lessonScreen"]{height:100dvh;overflow:hidden}
+  body[data-screen="lessonScreen"] .app{
+    box-sizing:border-box;
+    height:100dvh;
+    min-height:100dvh;
+    padding:calc(10px + env(safe-area-inset-top)) 18px calc(10px + env(safe-area-inset-bottom));
+    overflow:hidden;
+  }
+  body[data-screen="lessonScreen"] #lessonScreen{
+    height:100%;
+    display:grid;
+    grid-template-rows:auto auto auto 1fr;
+    min-height:0;
+    gap:0;
+  }
+  body[data-screen="lessonScreen"] .lesson-pixel-scene{
+    display:flex;
+    height:34px;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    color:#356ae6;
+    font-family:var(--retro-font);
+    font-weight:900;
+    letter-spacing:4px;
+    overflow:hidden;
+  }
+  .lesson-pixel-scene .pixel-hills{
+    color:#182033;
+    font-size:22px;
+    transform:scaleX(1.35);
+  }
+  .lesson-pixel-scene .pixel-star{font-size:13px}
+
+  body[data-screen="lessonScreen"] .lesson-card{
+    box-sizing:border-box;
+    height:100%;
+    min-height:0;
+    margin:4px 0 0;
+    padding:16px 12px 14px;
+    display:flex;
+    flex-direction:column;
+  }
+  body[data-screen="lessonScreen"] .lesson-card>.subtitle{flex:0 0 auto}
+  body[data-screen="lessonScreen"] .lesson-prompt{
+    flex:0 0 auto;
+    margin:10px 0 6px;
+  }
+  body[data-screen="lessonScreen"] .lesson-speak{
+    flex:0 0 auto;
+    align-self:center;
+  }
+  body[data-screen="lessonScreen"] .lesson-choices{
+    width:100%;
+    margin-top:auto;
+    padding-top:12px;
+    display:grid;
+    gap:8px;
+  }
+  body[data-screen="lessonScreen"] .lesson-choice{
+    min-height:52px;
+    padding:10px 8px;
+  }
+  body[data-screen="lessonScreen"] .lesson-feedback{
+    flex:0 0 auto;
+    margin:7px 0 0;
+  }
+  body[data-screen="lessonScreen"] .lesson-continue{
+    flex:0 0 auto;
+    margin-top:7px;
+    padding:10px 12px;
+  }
+}
+@media(max-width:390px), (max-height:760px){
+  body[data-screen="lessonScreen"] .lesson-pixel-scene{height:24px}
+  body[data-screen="lessonScreen"] .lesson-card{padding-top:10px}
+  body[data-screen="lessonScreen"] .lesson-prompt{font-size:28px;margin:7px 0 5px}
+  body[data-screen="lessonScreen"] .lesson-choice{min-height:46px;padding:8px}
+}
+
+
+/* ===== v0.9.3 COMBINED iPHONE: LESSON + ONE-SCREEN SUMMARY ===== */
+@media(max-width:520px){
+  body[data-screen="summaryScreen"]{height:100dvh;overflow:hidden}
+  body[data-screen="summaryScreen"] .app{
+    box-sizing:border-box;
+    height:100dvh;
+    min-height:100dvh;
+    padding:calc(8px + env(safe-area-inset-top)) 18px calc(10px + env(safe-area-inset-bottom));
+    overflow:hidden;
+  }
+  body[data-screen="summaryScreen"] .brand{display:none}
+  body[data-screen="summaryScreen"] #summaryScreen{
+    box-sizing:border-box;
+    height:100%;
+    min-height:0;
+    margin:0;
+  }
+  body[data-screen="summaryScreen"] .lesson-summary{
+    box-sizing:border-box;
+    height:100%;
+    min-height:0;
+    margin:0;
+    padding:12px 14px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    box-shadow:4px 4px 0 var(--shadow);
+  }
+  body[data-screen="summaryScreen"] .summary-icon{
+    font-size:28px;
+    line-height:1;
+    margin:0 0 2px;
+  }
+  body[data-screen="summaryScreen"] .lesson-summary h2{
+    font-size:24px;
+    line-height:1.05;
+    margin:2px 0 3px;
+  }
+  body[data-screen="summaryScreen"] #summaryScore{
+    font-size:15px;
+    margin:2px 0 8px;
+  }
+  body[data-screen="summaryScreen"] .summary-stats{
+    gap:7px;
+    margin:0 0 8px;
+  }
+  body[data-screen="summaryScreen"] .summary-stats div{
+    padding:7px 4px;
+    min-height:54px;
+  }
+  body[data-screen="summaryScreen"] .summary-stats strong{
+    font-size:22px;
+    line-height:1;
+  }
+  body[data-screen="summaryScreen"] .summary-stats span{
+    font-size:11px;
+    margin-top:4px;
+  }
+  body[data-screen="summaryScreen"] .progress-panel{
+    flex:1 1 auto;
+    min-height:0;
+    margin:0 0 8px;
+    padding:10px 12px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    overflow:hidden;
+  }
+  body[data-screen="summaryScreen"] .progress-panel h3{
+    font-size:17px;
+    margin:2px 0 4px;
+  }
+  body[data-screen="summaryScreen"] .progress-row{
+    margin:2px 0;
+    font-size:13px;
+  }
+  body[data-screen="summaryScreen"] .level-progress{
+    height:10px;
+    margin:5px 0 2px;
+  }
+  body[data-screen="summaryScreen"] #levelProgressText{
+    font-size:11px;
+    margin:1px 0 0;
+  }
+  body[data-screen="summaryScreen"] .primary,
+  body[data-screen="summaryScreen"] .secondary{
+    flex:0 0 auto;
+    min-height:46px;
+    padding:10px 12px;
+    margin-top:6px;
+    font-size:15px;
+  }
+}
+@media(max-width:390px), (max-height:760px){
+  body[data-screen="summaryScreen"] .lesson-summary{padding:8px 10px}
+  body[data-screen="summaryScreen"] .summary-icon{font-size:22px}
+  body[data-screen="summaryScreen"] .lesson-summary h2{font-size:21px}
+  body[data-screen="summaryScreen"] #summaryScore{font-size:13px;margin-bottom:5px}
+  body[data-screen="summaryScreen"] .summary-stats{margin-bottom:5px}
+  body[data-screen="summaryScreen"] .summary-stats div{min-height:46px;padding:5px 3px}
+  body[data-screen="summaryScreen"] .summary-stats strong{font-size:19px}
+  body[data-screen="summaryScreen"] .progress-panel{padding:6px 10px;margin-bottom:5px}
+  body[data-screen="summaryScreen"] .progress-panel h3{font-size:15px}
+  body[data-screen="summaryScreen"] .progress-row{font-size:12px}
+  body[data-screen="summaryScreen"] .primary,
+  body[data-screen="summaryScreen"] .secondary{min-height:42px;padding:8px;margin-top:5px;font-size:14px}
+}
