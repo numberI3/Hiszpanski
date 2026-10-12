@@ -1,8 +1,10 @@
-/* LinguaCore v0.11.0 — adaptive multi-exercise lesson engine */
+/* LinguaCore v0.11.1 — adaptive multi-exercise lesson engine */
 const LinguaCoreEngine=(()=>{
  const MODES=['recognition','reverse','listening','typing'];
  const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
- const wordsForLevel=(course,level)=>(COURSE_DATA[course]||[]).filter(w=>w.level===level);
+ const wordsForLevel=(course,level)=>(COURSE_DATA[course]||[]).filter(w=>w.level===level&&!w.context_only);
+ const WORD_SHARE={A1:.90,A2:.80,B1:.70,B2:.60};
+ function learningPool(course,level){const pool=wordsForLevel(course,level);return {pool,words:pool.filter(w=>w.type==='word'),phrases:pool.filter(w=>w.type==='phrase'),wordShare:WORD_SHARE[level]??.70}}
  function state(profileId,courseId){
    const profiles=loadProfiles(),p=profiles[profileId]; if(!p)return null;
    const c=getCourse(p,courseId); c.skills ||= {}; c.recent ||= []; return {profiles,p,c};
@@ -18,16 +20,12 @@ const LinguaCoreEngine=(()=>{
    return shuffle(MODES)[0];
  }
  function buildLesson(profileId,courseId,level,count=5){
-   const pool=wordsForLevel(courseId,level); if(!pool.length)return [];
-   const s=state(profileId,courseId),skills=s?.c.skills||{},recent=s?.c.recent||[];
-   const ranked=shuffle(pool).sort((a,b)=>{
-     const A=skillFor(skills,a.id),B=skillFor(skills,b.id);
-     const score=x=>(x.wrong||0)*4-(x.correct||0)*.55;
-     return (score(B)+(recent.includes(b.id)?-5:0)-(B.last||0)/1e13)-
-            (score(A)+(recent.includes(a.id)?-5:0)-(A.last||0)/1e13);
-   });
-   const chosen=ranked.slice(0,Math.min(count,pool.length));
-   return chosen.map(w=>({...w,exerciseMode:chooseMode(skillFor(skills,w.id))}));
+ const {pool,words,phrases,wordShare}=learningPool(courseId,level),profiles=loadProfiles(),p=profiles[profileId];if(!p||!pool.length)return[];
+ const c=getCourse(p,courseId),recent=new Set(c.recent||[]);
+ const rank=list=>list.map(w=>{const x=c.skills?.[w.id]||{},attempts=(x.correct||0)+(x.wrong||0);return {w,score:(x.wrong||0)*7-(x.correct||0)*2+(attempts===0?10:0)+(recent.has(w.id)?-14:0)+Math.random()*5}}).sort((a,b)=>b.score-a.score).map(x=>x.w);
+ const rw=rank(words),rp=rank(phrases);let wc=Math.min(rw.length,Math.round(count*wordShare)),pc=Math.min(rp.length,count-wc);
+ while(wc+pc<count&&wc<rw.length)wc++;while(wc+pc<count&&pc<rp.length)pc++;
+ return shuffle([...rw.slice(0,wc),...rp.slice(0,pc)]).slice(0,count).map(w=>{let mode=chooseMode(c.skills?.[w.id]);if(w.type!=='word'&&mode===MODES.TYPING)mode=MODES.REVERSE;return {...w,mode}})
  }
  function recordAnswer(profileId,courseId,wordId,correct,mode='recognition'){
    const s=state(profileId,courseId); if(!s)return;
