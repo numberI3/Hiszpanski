@@ -1,5 +1,5 @@
-<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111827"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css"><title>LinguaCore 0.11.2</title></head><body><main class="app">
-<header class="brand"><div class="brand-line"><h1>🌍 LinguaCore</h1><button id="soundToggle" class="sound-toggle" aria-label="Dźwięki">🔊</button></div><p>Ucz się języka po swojemu <span class="version">v0.11.2</span></p></header>
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111827"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css"><title>LinguaCore 0.11.3</title></head><body><main class="app">
+<header class="brand"><div class="brand-line"><h1>🌍 LinguaCore</h1><button id="soundToggle" class="sound-toggle" aria-label="Dźwięki">🔊</button></div><p>Ucz się języka po swojemu <span class="version">v0.11.3</span></p></header>
 <section id="profileScreen" class="screen"><h2 class="title">Utwórz profil</h2><p class="subtitle">Każdy profil ma własny postęp.</p><input id="profileName" class="input" placeholder="Nazwa profilu"><button id="createProfileBtn" class="primary">Utwórz profil</button><div id="existingProfiles"></div></section>
 <section id="courseScreen" class="screen"><div class="profile-chip"><div><small>PROFIL</small><div id="activeProfileName" class="profile-name">—</div></div><button id="changeProfileBtn" class="change-profile">Zmień</button></div><h2 class="title">Czego chcesz się uczyć?</h2><p class="subtitle">Każdy język zachowuje oddzielny postęp.</p>
 <button class="action-card course-card" data-course="english"><div class="card-row"><div class="flag">🇬🇧</div><div class="card-main"><div class="card-name">English</div><div class="card-info">British English • A1–B2</div></div><div class="arrow">›</div></div></button>
@@ -58,6 +58,29 @@ function markChoiceFeedback(selected,correctText,ok){
    selected.dataset.result=ok?'correct':'wrong';
  }
 }
+
+// Distractors must match the *displayed answer* rather than the prompt.
+// Never mix single-word answers with multi-word answers, or duplicate answers.
+function makeChoices(word,course,level,answerField){
+ const correct=String(word[answerField]).trim();
+ const pool=LinguaCoreEngine.wordsForLevel(course,level);
+ const norm=x=>String(x||'').trim().toLocaleLowerCase();
+ const tokens=x=>(x.match(/[\p{L}\p{N}]+(?:['’][\p{L}\p{N}]+)*/gu)||[]).length;
+ const count=tokens(correct),used=new Set([norm(correct)]);
+ const candidates=pool.filter(x=>x.id!==word.id).map(x=>({text:String(x[answerField]).trim(),topic:x.topic||'',type:x.type||'',id:x.id}))
+   .filter(x=>x.text&&tokens(x.text)===count&&!used.has(norm(x.text)));
+ const randomize=a=>{const v=[...a];for(let i=v.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[v[i],v[j]]=[v[j],v[i]]}return v};
+ const targetTopic=word.topic||'',targetLength=correct.length;
+ const ranked=randomize(candidates).map(x=>({ ...x, score:
+   (x.topic===targetTopic?5:0)+(x.type===word.type?2:0)
+   -Math.min(3,Math.abs(x.text.length-targetLength)/12)+Math.random()*2
+ })).sort((a,b)=>b.score-a.score);
+ const chosen=[];
+ for(const x of ranked){const key=norm(x.text);if(used.has(key))continue;used.add(key);chosen.push(x.text);if(chosen.length===3)break}
+ // Do not generate fake answers or break the length rule when there are too few.
+ return chosen.length===3?randomize([correct,...chosen]):null;
+}
+
 function finishAnswer(w,ok,correctText){
  answered=true;ok?RetroAudio.good():RetroAudio.bad();
  LinguaCoreEngine.recordAnswer(getActiveProfile().id,selectedCourse,w.id,ok,w.exerciseMode);
@@ -65,6 +88,16 @@ function finishAnswer(w,ok,correctText){
  [...$('lessonChoices').children].forEach(x=>x.disabled=true);
  $('lessonInput').disabled=true;$('lessonCheck').disabled=true;$('lessonFeedback').classList.add('is-visible');$('lessonContinue').classList.add('is-visible');
 }
+
+function renderTypingFallback(w){
+ $('lessonInstruction').textContent='Wpisz słowo w języku obcym';
+ $('lessonPrompt').textContent=w.pl;
+ $('lessonSpeak').style.display='none';
+ $('lessonTyping').style.display='grid';
+ const check=()=>{if(answered)return;const ok=normAnswer($('lessonInput').value)===normAnswer(w.target);finishAnswer(w,ok,w.target)};
+ $('lessonCheck').onclick=check;$('lessonInput').onkeydown=e=>{if(e.key==='Enter')check()};
+}
+
 function render(){
  const w=currentLesson[idx],mode=w.exerciseMode||'recognition';answered=false;
  $('lessonCounter').textContent=(idx+1)+' / '+currentLesson.length;
@@ -73,18 +106,20 @@ function render(){
  $('lessonChoices').innerHTML='';$('lessonChoices').style.display='none';
  $('lessonTyping').style.display='none';$('lessonInput').disabled=false;$('lessonCheck').disabled=false;$('lessonInput').value='';
  $('lessonSpeak').style.display='none';$('lessonPrompt').classList.remove('listening-prompt');$('lessonSpeak').textContent='🔊';
- const pool=LinguaCoreEngine.wordsForLevel(selectedCourse,selectedLevel).filter(x=>x.id!==w.id).sort(()=>Math.random()-.5);
+
  if(mode==='recognition'){
    $('lessonInstruction').textContent='Wybierz polskie tłumaczenie';
    $('lessonPrompt').textContent=w.target;$('lessonSpeak').style.display='inline-block';
    $('lessonSpeak').onclick=()=>LinguaCoreEngine.speak(w.target,selectedCourse);
-   const ans=[w.pl,...pool.slice(0,3).map(x=>x.pl)].sort(()=>Math.random()-.5);
+   const ans=makeChoices(w,selectedCourse,selectedLevel,'pl');
+   if(!ans){renderTypingFallback(w);return}
    $('lessonChoices').style.display='grid';
    ans.forEach(a=>{const b=document.createElement('button');b.className='lesson-choice';b.textContent=a;b.onclick=()=>{if(!answered){const ok=a===w.pl;markChoiceFeedback(b,w.pl,ok);finishAnswer(w,ok,w.pl)}};$('lessonChoices').append(b)});
  }else if(mode==='reverse'){
    $('lessonInstruction').textContent='Wybierz słowo w języku obcym';
    $('lessonPrompt').textContent=w.pl;
-   const ans=[w.target,...pool.slice(0,3).map(x=>x.target)].sort(()=>Math.random()-.5);
+   const ans=makeChoices(w,selectedCourse,selectedLevel,'target');
+   if(!ans){renderTypingFallback(w);return}
    $('lessonChoices').style.display='grid';
    ans.forEach(a=>{const b=document.createElement('button');b.className='lesson-choice';b.textContent=a;b.onclick=()=>{if(!answered){const ok=a===w.target;markChoiceFeedback(b,w.target,ok);finishAnswer(w,ok,w.target)}};$('lessonChoices').append(b)});
  }else if(mode==='listening'){
@@ -92,7 +127,8 @@ function render(){
    $('lessonPrompt').textContent='🔊';$('lessonPrompt').classList.add('listening-prompt');
    $('lessonSpeak').style.display='inline-block';$('lessonSpeak').textContent='🔊';
    $('lessonSpeak').onclick=()=>LinguaCoreEngine.speak(w.target,selectedCourse);
-   const ans=[w.pl,...pool.slice(0,3).map(x=>x.pl)].sort(()=>Math.random()-.5);
+   const ans=makeChoices(w,selectedCourse,selectedLevel,'pl');
+   if(!ans){renderTypingFallback(w);return}
    $('lessonChoices').style.display='grid';
    ans.forEach(a=>{const b=document.createElement('button');b.className='lesson-choice';b.textContent=a;b.onclick=()=>{if(!answered){const ok=a===w.pl;markChoiceFeedback(b,w.pl,ok);finishAnswer(w,ok,w.pl)}};$('lessonChoices').append(b)});
    setTimeout(()=>{if(!answered)LinguaCoreEngine.speak(w.target,selectedCourse)},180);

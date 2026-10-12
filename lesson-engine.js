@@ -1,4 +1,4 @@
-/* LinguaCore v0.11.2 — adaptive multi-exercise lesson engine */
+/* LinguaCore v0.11.3 — adaptive multi-exercise lesson engine */
 const LinguaCoreEngine=(()=>{
  const MODES=['recognition','reverse','listening','typing'];
  const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
