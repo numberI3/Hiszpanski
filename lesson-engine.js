@@ -1,4 +1,4 @@
-/* LinguaCore v0.11.1 — adaptive multi-exercise lesson engine */
+/* LinguaCore v0.11.2 — adaptive multi-exercise lesson engine */
 const LinguaCoreEngine=(()=>{
  const MODES=['recognition','reverse','listening','typing'];
  const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -25,7 +25,7 @@ const LinguaCoreEngine=(()=>{
  const rank=list=>list.map(w=>{const x=c.skills?.[w.id]||{},attempts=(x.correct||0)+(x.wrong||0);return {w,score:(x.wrong||0)*7-(x.correct||0)*2+(attempts===0?10:0)+(recent.has(w.id)?-14:0)+Math.random()*5}}).sort((a,b)=>b.score-a.score).map(x=>x.w);
  const rw=rank(words),rp=rank(phrases);let wc=Math.min(rw.length,Math.round(count*wordShare)),pc=Math.min(rp.length,count-wc);
  while(wc+pc<count&&wc<rw.length)wc++;while(wc+pc<count&&pc<rp.length)pc++;
- return shuffle([...rw.slice(0,wc),...rp.slice(0,pc)]).slice(0,count).map(w=>{let mode=chooseMode(c.skills?.[w.id]);if(w.type!=='word'&&mode===MODES.TYPING)mode=MODES.REVERSE;return {...w,mode}})
+ return shuffle([...rw.slice(0,wc),...rp.slice(0,pc)]).slice(0,count).map(w=>{let mode=chooseMode(skillFor(c.skills||{},w.id));if(w.type!=='word'&&mode==='typing')mode='reverse';return {...w,exerciseMode:mode}})
  }
  function recordAnswer(profileId,courseId,wordId,correct,mode='recognition'){
    const s=state(profileId,courseId); if(!s)return;
