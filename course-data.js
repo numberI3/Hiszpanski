@@ -1,4 +1,4 @@
-/* LinguaCore v0.11.1 — vocabulary-first */
+/* LinguaCore v0.12.0 — original vocabulary plus curated British expressions */
 const COURSE_DATA = {
   "spanish": [
     {
@@ -36002,6 +36002,2708 @@ const COURSE_DATA = {
       "type": "sentence",
       "topic": "communication",
       "context_only": true
+    }
+  ],
+  "idioms": [
+    {
+      "id": "en_idiom_001",
+      "level": "A2",
+      "target": "give me a hand",
+      "pl": "pomóż mi",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_002",
+      "level": "A2",
+      "target": "no worries",
+      "pl": "nie ma sprawy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_003",
+      "level": "A2",
+      "target": "fair enough",
+      "pl": "w porządku, rozumiem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_004",
+      "level": "A2",
+      "target": "cheers",
+      "pl": "dzięki",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_005",
+      "level": "A2",
+      "target": "cheers mate",
+      "pl": "dzięki, kolego",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_006",
+      "level": "A2",
+      "target": "see you in a bit",
+      "pl": "do zobaczenia za chwilę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_007",
+      "level": "A2",
+      "target": "hang on a minute",
+      "pl": "poczekaj chwilę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_008",
+      "level": "A2",
+      "target": "never mind",
+      "pl": "nieważne",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_009",
+      "level": "A2",
+      "target": "here you go",
+      "pl": "proszę, oto jest",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_010",
+      "level": "A2",
+      "target": "my bad",
+      "pl": "moja wina",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_011",
+      "level": "A2",
+      "target": "not a problem",
+      "pl": "żaden problem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_012",
+      "level": "A2",
+      "target": "sounds good",
+      "pl": "brzmi dobrze",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_013",
+      "level": "A2",
+      "target": "up to you",
+      "pl": "twój wybór",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_014",
+      "level": "A2",
+      "target": "I'm on my way",
+      "pl": "już jadę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_015",
+      "level": "A2",
+      "target": "I'm running late",
+      "pl": "spóźniam się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_016",
+      "level": "A2",
+      "target": "I'm starving",
+      "pl": "umieram z głodu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_017",
+      "level": "A2",
+      "target": "I'm shattered",
+      "pl": "jestem wykończony",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_018",
+      "level": "A2",
+      "target": "I'm knackered",
+      "pl": "jestem wykończony",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_019",
+      "level": "A2",
+      "target": "I'm skint",
+      "pl": "jestem spłukany",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_020",
+      "level": "A2",
+      "target": "I'm chuffed",
+      "pl": "jestem zachwycony",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_021",
+      "level": "A2",
+      "target": "I'm gutted",
+      "pl": "jestem załamany",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_022",
+      "level": "A2",
+      "target": "I'm fed up",
+      "pl": "mam już dość",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_023",
+      "level": "A2",
+      "target": "I'm freezing",
+      "pl": "strasznie marznę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_024",
+      "level": "A2",
+      "target": "I'm boiling",
+      "pl": "jest mi strasznie gorąco",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_025",
+      "level": "A2",
+      "target": "I'm off",
+      "pl": "zbieram się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_026",
+      "level": "A2",
+      "target": "I'm in",
+      "pl": "wchodzę w to",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_027",
+      "level": "A2",
+      "target": "I'm out",
+      "pl": "rezygnuję",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_028",
+      "level": "A2",
+      "target": "not really",
+      "pl": "nie bardzo",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_029",
+      "level": "A2",
+      "target": "not yet",
+      "pl": "jeszcze nie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_030",
+      "level": "A2",
+      "target": "as usual",
+      "pl": "jak zwykle",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_031",
+      "level": "A2",
+      "target": "so far so good",
+      "pl": "jak dotąd wszystko dobrze",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_032",
+      "level": "A2",
+      "target": "just in case",
+      "pl": "na wszelki wypadek",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_033",
+      "level": "A2",
+      "target": "by the way",
+      "pl": "przy okazji",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_034",
+      "level": "A2",
+      "target": "at the moment",
+      "pl": "w tej chwili",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_035",
+      "level": "A2",
+      "target": "all of a sudden",
+      "pl": "nagle",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_036",
+      "level": "A2",
+      "target": "once in a while",
+      "pl": "od czasu do czasu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_037",
+      "level": "A2",
+      "target": "right away",
+      "pl": "od razu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_038",
+      "level": "A2",
+      "target": "on purpose",
+      "pl": "celowo",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_039",
+      "level": "A2",
+      "target": "in a hurry",
+      "pl": "w pośpiechu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_040",
+      "level": "A2",
+      "target": "out of order",
+      "pl": "nie działa",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_041",
+      "level": "A2",
+      "target": "what a shame",
+      "pl": "jaka szkoda",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_042",
+      "level": "A2",
+      "target": "what a mess",
+      "pl": "co za bałagan",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_043",
+      "level": "A2",
+      "target": "that's a relief",
+      "pl": "co za ulga",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_044",
+      "level": "A2",
+      "target": "that's a bargain",
+      "pl": "to okazja cenowa",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_045",
+      "level": "A2",
+      "target": "it's worth it",
+      "pl": "warto",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_046",
+      "level": "A2",
+      "target": "it's not worth it",
+      "pl": "nie warto",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_047",
+      "level": "A2",
+      "target": "it's up to you",
+      "pl": "to zależy od ciebie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_048",
+      "level": "A2",
+      "target": "it's a piece of cake",
+      "pl": "to bułka z masłem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_049",
+      "level": "B1",
+      "target": "it's not my cup of tea",
+      "pl": "to nie dla mnie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_050",
+      "level": "B1",
+      "target": "I'm not fussed",
+      "pl": "jest mi wszystko jedno",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_051",
+      "level": "B1",
+      "target": "I can't be bothered",
+      "pl": "nie chce mi się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_052",
+      "level": "B1",
+      "target": "I haven't got a clue",
+      "pl": "nie mam zielonego pojęcia",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_053",
+      "level": "B1",
+      "target": "I don't buy it",
+      "pl": "nie wierzę w to",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_054",
+      "level": "B1",
+      "target": "I get the point",
+      "pl": "rozumiem, o co chodzi",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_055",
+      "level": "B1",
+      "target": "I see what you mean",
+      "pl": "rozumiem, co masz na myśli",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_056",
+      "level": "B1",
+      "target": "I take your point",
+      "pl": "rozumiem twój argument",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_057",
+      "level": "B1",
+      "target": "I couldn't agree more",
+      "pl": "w pełni się zgadzam",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_058",
+      "level": "B2",
+      "target": "I beg to differ",
+      "pl": "pozwolę sobie się nie zgodzić",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_059",
+      "level": "A2",
+      "target": "I don't mind",
+      "pl": "nie mam nic przeciwko",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_060",
+      "level": "B1",
+      "target": "I don't fancy it",
+      "pl": "nie mam na to ochoty",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_061",
+      "level": "B1",
+      "target": "I fancy a cuppa",
+      "pl": "mam ochotę na herbatę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_062",
+      "level": "B1",
+      "target": "fancy a pint",
+      "pl": "masz ochotę na piwo",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_063",
+      "level": "A2",
+      "target": "have a cuppa",
+      "pl": "napij się herbaty",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_064",
+      "level": "B1",
+      "target": "have a lie-in",
+      "pl": "pośpij dłużej rano",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_065",
+      "level": "B1",
+      "target": "have a go",
+      "pl": "spróbuj",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_066",
+      "level": "B1",
+      "target": "give it a go",
+      "pl": "spróbuj tego",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_067",
+      "level": "B1",
+      "target": "give it a miss",
+      "pl": "odpuść sobie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_068",
+      "level": "B1",
+      "target": "give it a rest",
+      "pl": "daj już spokój",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_069",
+      "level": "B1",
+      "target": "give me a shout",
+      "pl": "daj mi znać",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_070",
+      "level": "B1",
+      "target": "give me a bell",
+      "pl": "zadzwoń do mnie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_071",
+      "level": "B1",
+      "target": "drop me a line",
+      "pl": "napisz do mnie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_072",
+      "level": "A2",
+      "target": "keep in touch",
+      "pl": "bądźmy w kontakcie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_073",
+      "level": "B1",
+      "target": "catch up",
+      "pl": "nadrobić zaległości",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_074",
+      "level": "B1",
+      "target": "let's catch up",
+      "pl": "spotkajmy się i pogadajmy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_075",
+      "level": "B1",
+      "target": "pop round",
+      "pl": "wpaść z wizytą",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_076",
+      "level": "B1",
+      "target": "pop in",
+      "pl": "wpaść na chwilę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_077",
+      "level": "B1",
+      "target": "nip out",
+      "pl": "wyskoczyć na chwilę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_078",
+      "level": "B1",
+      "target": "nip to the shops",
+      "pl": "wyskoczyć do sklepu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_079",
+      "level": "B1",
+      "target": "sort it out",
+      "pl": "załatw to",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_080",
+      "level": "B1",
+      "target": "I'll sort it",
+      "pl": "ja to załatwię",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_081",
+      "level": "B1",
+      "target": "it's sorted",
+      "pl": "sprawa załatwiona",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_082",
+      "level": "B1",
+      "target": "that's rubbish",
+      "pl": "to bzdura",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_083",
+      "level": "B1",
+      "target": "what a load of rubbish",
+      "pl": "co za bzdury",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_084",
+      "level": "B1",
+      "target": "that's dodgy",
+      "pl": "to podejrzane",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_085",
+      "level": "B1",
+      "target": "that's cheeky",
+      "pl": "to bezczelne",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_086",
+      "level": "A2",
+      "target": "that's brilliant",
+      "pl": "to świetne",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_087",
+      "level": "B1",
+      "target": "that's spot on",
+      "pl": "dokładnie tak",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_088",
+      "level": "B1",
+      "target": "spot on",
+      "pl": "w punkt",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_089",
+      "level": "A2",
+      "target": "absolutely",
+      "pl": "zdecydowanie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_090",
+      "level": "B1",
+      "target": "not a chance",
+      "pl": "nie ma mowy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_091",
+      "level": "A2",
+      "target": "no chance",
+      "pl": "nie ma szans",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_092",
+      "level": "A2",
+      "target": "no way",
+      "pl": "nie ma mowy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_093",
+      "level": "A2",
+      "target": "no big deal",
+      "pl": "nic wielkiego",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_094",
+      "level": "B1",
+      "target": "big deal",
+      "pl": "wielka mi rzecz",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_095",
+      "level": "B1",
+      "target": "what's the catch",
+      "pl": "gdzie jest haczyk",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_096",
+      "level": "B1",
+      "target": "it rings a bell",
+      "pl": "coś mi świta",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_097",
+      "level": "B1",
+      "target": "it doesn't ring a bell",
+      "pl": "nic mi to nie mówi",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_098",
+      "level": "B1",
+      "target": "ring a bell",
+      "pl": "brzmieć znajomo",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_099",
+      "level": "B1",
+      "target": "fingers crossed",
+      "pl": "trzymam kciuki",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_100",
+      "level": "B1",
+      "target": "touch wood",
+      "pl": "odpukać w niemalowane",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_101",
+      "level": "B1",
+      "target": "break a leg",
+      "pl": "powodzenia",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_102",
+      "level": "A2",
+      "target": "best of luck",
+      "pl": "powodzenia",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_103",
+      "level": "B1",
+      "target": "fingers crossed for you",
+      "pl": "trzymam za ciebie kciuki",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_104",
+      "level": "B1",
+      "target": "keep your chin up",
+      "pl": "głowa do góry",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_105",
+      "level": "B1",
+      "target": "hang in there",
+      "pl": "trzymaj się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_106",
+      "level": "A2",
+      "target": "cheer up",
+      "pl": "rozchmurz się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_107",
+      "level": "A2",
+      "target": "calm down",
+      "pl": "uspokój się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_108",
+      "level": "A2",
+      "target": "take it easy",
+      "pl": "wyluzuj",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_109",
+      "level": "A2",
+      "target": "take your time",
+      "pl": "nie spiesz się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_110",
+      "level": "B1",
+      "target": "make yourself at home",
+      "pl": "czuj się jak u siebie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_111",
+      "level": "A2",
+      "target": "help yourself",
+      "pl": "częstuj się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_112",
+      "level": "B1",
+      "target": "be my guest",
+      "pl": "proszę bardzo",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_113",
+      "level": "B1",
+      "target": "make up your mind",
+      "pl": "zdecyduj się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_114",
+      "level": "A2",
+      "target": "change your mind",
+      "pl": "zmień zdanie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_115",
+      "level": "B1",
+      "target": "think it over",
+      "pl": "przemyśl to",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_116",
+      "level": "B1",
+      "target": "sleep on it",
+      "pl": "prześpij się z tym",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_117",
+      "level": "B1",
+      "target": "get a grip",
+      "pl": "weź się w garść",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_118",
+      "level": "B1",
+      "target": "pull yourself together",
+      "pl": "weź się w garść",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_119",
+      "level": "B1",
+      "target": "get on my nerves",
+      "pl": "działać mi na nerwy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_120",
+      "level": "B1",
+      "target": "drive me mad",
+      "pl": "doprowadzać mnie do szału",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_121",
+      "level": "B1",
+      "target": "get on with it",
+      "pl": "weź się do roboty",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_122",
+      "level": "B1",
+      "target": "get the hang of it",
+      "pl": "załapać, jak to działa",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_123",
+      "level": "B2",
+      "target": "get the wrong end of the stick",
+      "pl": "źle coś zrozumieć",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_124",
+      "level": "B2",
+      "target": "get your head around it",
+      "pl": "zrozumieć coś trudnego",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_125",
+      "level": "B2",
+      "target": "get away with it",
+      "pl": "ujść z czymś na sucho",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_126",
+      "level": "B1",
+      "target": "get over it",
+      "pl": "pogodzić się z tym",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_127",
+      "level": "B1",
+      "target": "get rid of it",
+      "pl": "pozbyć się tego",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_128",
+      "level": "B1",
+      "target": "get stuck in",
+      "pl": "zabrać się energicznie do pracy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_129",
+      "level": "B2",
+      "target": "get carried away",
+      "pl": "dać się ponieść emocjom",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_130",
+      "level": "B2",
+      "target": "get cold feet",
+      "pl": "stchórzyć w ostatniej chwili",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_131",
+      "level": "B2",
+      "target": "get your act together",
+      "pl": "ogarnij się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_132",
+      "level": "B2",
+      "target": "get out of hand",
+      "pl": "wymknąć się spod kontroli",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_133",
+      "level": "B1",
+      "target": "get to the point",
+      "pl": "przejdź do rzeczy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_134",
+      "level": "B2",
+      "target": "cut to the chase",
+      "pl": "przejdź do sedna",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_135",
+      "level": "B2",
+      "target": "cut corners",
+      "pl": "iść na skróty kosztem jakości",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_136",
+      "level": "B2",
+      "target": "cut someone some slack",
+      "pl": "bądź dla kogoś wyrozumiały",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_137",
+      "level": "B1",
+      "target": "call it a day",
+      "pl": "zakończyć na dziś",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_138",
+      "level": "B2",
+      "target": "call it quits",
+      "pl": "dać sobie spokój",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_139",
+      "level": "B2",
+      "target": "call the shots",
+      "pl": "decydować o wszystkim",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_140",
+      "level": "B2",
+      "target": "play it by ear",
+      "pl": "zobaczyć, jak się sytuacja rozwinie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_141",
+      "level": "B2",
+      "target": "wing it",
+      "pl": "improwizować",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_142",
+      "level": "B2",
+      "target": "blag it",
+      "pl": "wybrnąć dzięki improwizacji",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_143",
+      "level": "B1",
+      "target": "have a laugh",
+      "pl": "dobrze się bawić",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_144",
+      "level": "B1",
+      "target": "have a laugh with someone",
+      "pl": "żartować sobie z kimś",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_145",
+      "level": "B2",
+      "target": "have a laugh at someone's expense",
+      "pl": "śmiać się czyimś kosztem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_146",
+      "level": "B1",
+      "target": "pull someone's leg",
+      "pl": "nabierać kogoś",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_147",
+      "level": "B1",
+      "target": "wind someone up",
+      "pl": "wkręcać kogoś",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_148",
+      "level": "B1",
+      "target": "mess about",
+      "pl": "wygłupiać się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_149",
+      "level": "B1",
+      "target": "muck about",
+      "pl": "wygłupiać się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_150",
+      "level": "B1",
+      "target": "have a natter",
+      "pl": "pogawędzić",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_151",
+      "level": "B2",
+      "target": "have a chinwag",
+      "pl": "pogawędzić",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_152",
+      "level": "B1",
+      "target": "have a row",
+      "pl": "pokłócić się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_153",
+      "level": "B1",
+      "target": "fall out with someone",
+      "pl": "pokłócić się z kimś",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_154",
+      "level": "B1",
+      "target": "make up with someone",
+      "pl": "pogodzić się z kimś",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_155",
+      "level": "B1",
+      "target": "hit it off",
+      "pl": "od razu się polubić",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_156",
+      "level": "A2",
+      "target": "get along",
+      "pl": "dogadywać się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_157",
+      "level": "B2",
+      "target": "get on like a house on fire",
+      "pl": "świetnie się dogadywać",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_158",
+      "level": "B2",
+      "target": "see eye to eye",
+      "pl": "zgadzać się ze sobą",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_159",
+      "level": "B2",
+      "target": "be on the same page",
+      "pl": "mieć takie samo rozumienie sytuacji",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_160",
+      "level": "B1",
+      "target": "be in the same boat",
+      "pl": "być w tej samej sytuacji",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_161",
+      "level": "B2",
+      "target": "be on the fence",
+      "pl": "być niezdecydowanym",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_162",
+      "level": "B1",
+      "target": "be up for it",
+      "pl": "mieć na coś ochotę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_163",
+      "level": "B1",
+      "target": "be up to something",
+      "pl": "coś kombinować",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_164",
+      "level": "B2",
+      "target": "be snowed under",
+      "pl": "być zawalonym robotą",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_165",
+      "level": "B2",
+      "target": "be rushed off your feet",
+      "pl": "być bardzo zajętym",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_166",
+      "level": "B1",
+      "target": "be under the weather",
+      "pl": "czuć się niewyraźnie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_167",
+      "level": "B1",
+      "target": "be over the moon",
+      "pl": "być wniebowziętym",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_168",
+      "level": "B2",
+      "target": "be down in the dumps",
+      "pl": "mieć doła",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_169",
+      "level": "B2",
+      "target": "be in a pickle",
+      "pl": "być w tarapatach",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_170",
+      "level": "B2",
+      "target": "be in hot water",
+      "pl": "mieć kłopoty",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_171",
+      "level": "B2",
+      "target": "be in two minds",
+      "pl": "wahać się",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_172",
+      "level": "B2",
+      "target": "be out of pocket",
+      "pl": "być stratnym finansowo",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_173",
+      "level": "B2",
+      "target": "be hard up",
+      "pl": "nie mieć pieniędzy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_174",
+      "level": "B1",
+      "target": "be broke",
+      "pl": "być bez grosza",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_175",
+      "level": "B1",
+      "target": "be loaded",
+      "pl": "być bogatym",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_176",
+      "level": "B1",
+      "target": "cost an arm and a leg",
+      "pl": "kosztować fortunę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_177",
+      "level": "B1",
+      "target": "cost a fortune",
+      "pl": "kosztować majątek",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_178",
+      "level": "B1",
+      "target": "rip someone off",
+      "pl": "zdzierać z kogoś pieniądze",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_179",
+      "level": "B1",
+      "target": "what a rip-off",
+      "pl": "co za zdzierstwo",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_180",
+      "level": "B2",
+      "target": "pay through the nose",
+      "pl": "przepłacić",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_181",
+      "level": "B1",
+      "target": "save for a rainy day",
+      "pl": "odkładać na czarną godzinę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_182",
+      "level": "B2",
+      "target": "make ends meet",
+      "pl": "wiązać koniec z końcem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_183",
+      "level": "B2",
+      "target": "tighten your belt",
+      "pl": "zacisnąć pasa",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_184",
+      "level": "B2",
+      "target": "live hand to mouth",
+      "pl": "żyć od pierwszego do pierwszego",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_185",
+      "level": "B2",
+      "target": "on a shoestring",
+      "pl": "bardzo małym kosztem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_186",
+      "level": "B1",
+      "target": "on the cheap",
+      "pl": "po taniości",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_187",
+      "level": "B1",
+      "target": "for peanuts",
+      "pl": "za grosze",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_188",
+      "level": "B1",
+      "target": "cheap as chips",
+      "pl": "bardzo tanie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_189",
+      "level": "A2",
+      "target": "as good as new",
+      "pl": "jak nowy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_190",
+      "level": "A2",
+      "target": "brand new",
+      "pl": "zupełnie nowy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_191",
+      "level": "A2",
+      "target": "second-hand",
+      "pl": "używany",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_192",
+      "level": "B2",
+      "target": "not up to scratch",
+      "pl": "poniżej oczekiwanego poziomu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_193",
+      "level": "B2",
+      "target": "not all it's cracked up to be",
+      "pl": "nie tak dobry, jak mówią",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_194",
+      "level": "B2",
+      "target": "hit the nail on the head",
+      "pl": "trafić w sedno",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_195",
+      "level": "B1",
+      "target": "miss the point",
+      "pl": "nie zrozumieć sedna",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_196",
+      "level": "B2",
+      "target": "miss the boat",
+      "pl": "przegapić okazję",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_197",
+      "level": "B2",
+      "target": "jump the gun",
+      "pl": "pospieszyć się z decyzją",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_198",
+      "level": "B2",
+      "target": "bite the bullet",
+      "pl": "zacisnąć zęby i zrobić coś trudnego",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_199",
+      "level": "B2",
+      "target": "bite off more than you can chew",
+      "pl": "wziąć na siebie zbyt wiele",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_200",
+      "level": "B2",
+      "target": "burn the midnight oil",
+      "pl": "pracować do późna w nocy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_201",
+      "level": "B2",
+      "target": "burn yourself out",
+      "pl": "doprowadzić się do wypalenia",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_202",
+      "level": "B2",
+      "target": "learn the hard way",
+      "pl": "nauczyć się na własnych błędach",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_203",
+      "level": "B1",
+      "target": "back to square one",
+      "pl": "wrócić do punktu wyjścia",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_204",
+      "level": "B1",
+      "target": "back on track",
+      "pl": "wrócić na właściwe tory",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_205",
+      "level": "B1",
+      "target": "on the right track",
+      "pl": "na dobrej drodze",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_206",
+      "level": "B1",
+      "target": "in the long run",
+      "pl": "na dłuższą metę",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_207",
+      "level": "B2",
+      "target": "in the nick of time",
+      "pl": "w ostatniej chwili",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_208",
+      "level": "B1",
+      "target": "at the end of the day",
+      "pl": "ostatecznie rzecz biorąc",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_209",
+      "level": "B2",
+      "target": "when it comes down to it",
+      "pl": "gdy przychodzi co do czego",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_210",
+      "level": "B1",
+      "target": "the last straw",
+      "pl": "ostatnia kropla",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_211",
+      "level": "B2",
+      "target": "a blessing in disguise",
+      "pl": "szczęście w nieszczęściu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_212",
+      "level": "B2",
+      "target": "a double-edged sword",
+      "pl": "miecz obosieczny",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_213",
+      "level": "B2",
+      "target": "a grey area",
+      "pl": "niejednoznaczna kwestia",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_214",
+      "level": "B2",
+      "target": "a long shot",
+      "pl": "mało prawdopodobna szansa",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_215",
+      "level": "B2",
+      "target": "a close call",
+      "pl": "o włos od nieszczęścia",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_216",
+      "level": "B1",
+      "target": "a no-brainer",
+      "pl": "oczywisty wybór",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_217",
+      "level": "B2",
+      "target": "a bit of a faff",
+      "pl": "trochę zachodu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_218",
+      "level": "B1",
+      "target": "a pain in the neck",
+      "pl": "utrapienie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_219",
+      "level": "B1",
+      "target": "a pain in the backside",
+      "pl": "utrapienie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_220",
+      "level": "A2",
+      "target": "a waste of time",
+      "pl": "strata czasu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_221",
+      "level": "A2",
+      "target": "a waste of money",
+      "pl": "strata pieniędzy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_222",
+      "level": "B2",
+      "target": "a breath of fresh air",
+      "pl": "powiew świeżości",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_223",
+      "level": "B2",
+      "target": "a drop in the ocean",
+      "pl": "kropla w morzu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_224",
+      "level": "B2",
+      "target": "a storm in a teacup",
+      "pl": "burza w szklance wody",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_225",
+      "level": "B2",
+      "target": "the tip of the iceberg",
+      "pl": "wierzchołek góry lodowej",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_226",
+      "level": "B2",
+      "target": "the best of both worlds",
+      "pl": "najlepsze z obu możliwości",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_227",
+      "level": "B2",
+      "target": "the ball is in your court",
+      "pl": "teraz ruch należy do ciebie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_228",
+      "level": "B2",
+      "target": "the penny has dropped",
+      "pl": "wreszcie zrozumiałem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_229",
+      "level": "B2",
+      "target": "the writing's on the wall",
+      "pl": "widać, że źle się skończy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_230",
+      "level": "A2",
+      "target": "it's a long story",
+      "pl": "to długa historia",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_231",
+      "level": "B1",
+      "target": "long story short",
+      "pl": "krótko mówiąc",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_232",
+      "level": "B1",
+      "target": "to cut a long story short",
+      "pl": "krótko mówiąc",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_233",
+      "level": "B1",
+      "target": "believe it or not",
+      "pl": "wierz lub nie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_234",
+      "level": "B2",
+      "target": "for what it's worth",
+      "pl": "jeśli to coś znaczy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_235",
+      "level": "B1",
+      "target": "to be fair",
+      "pl": "żeby być uczciwym",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_236",
+      "level": "A2",
+      "target": "to be honest",
+      "pl": "szczerze mówiąc",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_237",
+      "level": "B1",
+      "target": "if you ask me",
+      "pl": "moim zdaniem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_238",
+      "level": "B1",
+      "target": "as far as I know",
+      "pl": "o ile wiem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_239",
+      "level": "B2",
+      "target": "as far as I'm concerned",
+      "pl": "jeśli o mnie chodzi",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_240",
+      "level": "B2",
+      "target": "as a matter of fact",
+      "pl": "właściwie to",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_241",
+      "level": "A2",
+      "target": "more or less",
+      "pl": "mniej więcej",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_242",
+      "level": "B1",
+      "target": "sooner or later",
+      "pl": "prędzej czy później",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_243",
+      "level": "B1",
+      "target": "now and then",
+      "pl": "od czasu do czasu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_244",
+      "level": "B1",
+      "target": "on and off",
+      "pl": "z przerwami",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_245",
+      "level": "B1",
+      "target": "up and down",
+      "pl": "raz lepiej, raz gorzej",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_246",
+      "level": "B1",
+      "target": "safe and sound",
+      "pl": "cały i zdrowy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_247",
+      "level": "B1",
+      "target": "sick and tired",
+      "pl": "mieć serdecznie dość",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_248",
+      "level": "B2",
+      "target": "through thick and thin",
+      "pl": "na dobre i na złe",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_249",
+      "level": "B1",
+      "target": "all ears",
+      "pl": "zamieniam się w słuch",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_250",
+      "level": "B2",
+      "target": "all thumbs",
+      "pl": "mieć dwie lewe ręce",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_251",
+      "level": "B1",
+      "target": "out of the blue",
+      "pl": "niespodziewanie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_252",
+      "level": "B1",
+      "target": "out of nowhere",
+      "pl": "znikąd",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_253",
+      "level": "B1",
+      "target": "out of the question",
+      "pl": "wykluczone",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_254",
+      "level": "B2",
+      "target": "out of the woods",
+      "pl": "poza niebezpieczeństwem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_255",
+      "level": "B1",
+      "target": "out of touch",
+      "pl": "nie być na bieżąco",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_256",
+      "level": "B1",
+      "target": "out of practice",
+      "pl": "wyjść z wprawy",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_257",
+      "level": "B1",
+      "target": "out of luck",
+      "pl": "mieć pecha",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_258",
+      "level": "A2",
+      "target": "out of breath",
+      "pl": "bez tchu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_259",
+      "level": "A2",
+      "target": "out of stock",
+      "pl": "wyprzedany",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_260",
+      "level": "A2",
+      "target": "out of date",
+      "pl": "nieaktualny",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_261",
+      "level": "B2",
+      "target": "up in the air",
+      "pl": "jeszcze nieustalone",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_262",
+      "level": "B2",
+      "target": "up to scratch",
+      "pl": "na odpowiednim poziomie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_263",
+      "level": "B2",
+      "target": "up to speed",
+      "pl": "na bieżąco",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_264",
+      "level": "B2",
+      "target": "up to no good",
+      "pl": "kombinować coś złego",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_265",
+      "level": "B2",
+      "target": "on the mend",
+      "pl": "wracać do zdrowia",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_266",
+      "level": "B1",
+      "target": "on the go",
+      "pl": "w ciągłym ruchu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_267",
+      "level": "B1",
+      "target": "on the dot",
+      "pl": "punktualnie co do minuty",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_268",
+      "level": "B1",
+      "target": "on the house",
+      "pl": "na koszt lokalu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_269",
+      "level": "B2",
+      "target": "on cloud nine",
+      "pl": "w siódmym niebie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_270",
+      "level": "B2",
+      "target": "on thin ice",
+      "pl": "na cienkim lodzie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_271",
+      "level": "B1",
+      "target": "on edge",
+      "pl": "podenerwowany",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_272",
+      "level": "A2",
+      "target": "on your own",
+      "pl": "samodzielnie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_273",
+      "level": "B1",
+      "target": "on second thoughts",
+      "pl": "po namyśle",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_274",
+      "level": "B1",
+      "target": "under pressure",
+      "pl": "pod presją",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_275",
+      "level": "B2",
+      "target": "under the impression",
+      "pl": "być przekonanym",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_276",
+      "level": "B2",
+      "target": "under your breath",
+      "pl": "pod nosem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_277",
+      "level": "B2",
+      "target": "under the circumstances",
+      "pl": "w tych okolicznościach",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_278",
+      "level": "B1",
+      "target": "over the top",
+      "pl": "przesadzony",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_279",
+      "level": "B1",
+      "target": "over and over again",
+      "pl": "w kółko",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_280",
+      "level": "B2",
+      "target": "over my dead body",
+      "pl": "po moim trupie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_281",
+      "level": "B1",
+      "target": "behind the scenes",
+      "pl": "za kulisami",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_282",
+      "level": "B1",
+      "target": "behind schedule",
+      "pl": "z opóźnieniem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_283",
+      "level": "B1",
+      "target": "ahead of schedule",
+      "pl": "przed terminem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_284",
+      "level": "B2",
+      "target": "ahead of the game",
+      "pl": "o krok przed innymi",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_285",
+      "level": "B2",
+      "target": "against the clock",
+      "pl": "w wyścigu z czasem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_286",
+      "level": "A2",
+      "target": "around the corner",
+      "pl": "tuż za rogiem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_287",
+      "level": "B1",
+      "target": "in no time",
+      "pl": "w mgnieniu oka",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_288",
+      "level": "B2",
+      "target": "in a nutshell",
+      "pl": "w skrócie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_289",
+      "level": "B1",
+      "target": "in the meantime",
+      "pl": "w międzyczasie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_290",
+      "level": "B1",
+      "target": "in the middle of nowhere",
+      "pl": "na kompletnym odludziu",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_291",
+      "level": "B2",
+      "target": "in broad daylight",
+      "pl": "w biały dzień",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_292",
+      "level": "B1",
+      "target": "in black and white",
+      "pl": "czarno na białym",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_293",
+      "level": "B2",
+      "target": "in the same breath",
+      "pl": "jednym tchem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_294",
+      "level": "B1",
+      "target": "in the first place",
+      "pl": "przede wszystkim",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_295",
+      "level": "A2",
+      "target": "in the end",
+      "pl": "ostatecznie",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_296",
+      "level": "B2",
+      "target": "in the clear",
+      "pl": "poza podejrzeniem lub zagrożeniem",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_297",
+      "level": "B2",
+      "target": "at a glance",
+      "pl": "na pierwszy rzut oka",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_298",
+      "level": "B2",
+      "target": "at a push",
+      "pl": "w ostateczności",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_299",
+      "level": "B2",
+      "target": "at a loose end",
+      "pl": "nie mieć co ze sobą zrobić",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
+    },
+    {
+      "id": "en_idiom_300",
+      "level": "B2",
+      "target": "at your fingertips",
+      "pl": "na wyciągnięcie ręki",
+      "type": "phrase",
+      "topic": "idioms",
+      "context_only": false
     }
   ]
 };
